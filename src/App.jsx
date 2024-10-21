@@ -10,8 +10,10 @@ import Artworks from './views/Artworks';
 import ArtworkDetail from './views/ArtworkDetail';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import PrivateRoute from './components/PrivateRoute';  // Ruta protegida para usuarios autenticados
-import { AuthProvider } from './context/AuthContext';  // Contexto global de autenticación
+import PrivateRoute from './components/PrivateRoute';  
+import { AuthProvider } from './context/AuthContext';  
+import './index.css';
+import './app.css'; 
 
 function App() {
   return (
