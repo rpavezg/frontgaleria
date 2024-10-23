@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom'; // Usar HashRouter si hay problemas de redirección en el servidor
 import Home from './views/Home';
 import Artists from './views/Artists';
 import Register from './views/Register';
@@ -20,48 +20,50 @@ function App() {
     <AuthProvider>  {/* Proveedor del contexto de autenticación */}
       <Router>
         <Navbar />  {/* Navbar con enlaces a las diferentes secciones */}
-        <Routes>
-          {/* Rutas del área pública */}
-          <Route path="/" element={<Home />} />
-          <Route path="/artists" element={<Artists />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/contact" element={<div>Contacto</div>} />
+        <div style={{ minHeight: 'calc(100vh - 200px)' }}> {/* Asegura que el contenido ocupe el espacio necesario */}
+          <Routes>
+            {/* Rutas del área pública */}
+            <Route path="/" element={<Home />} />
+            <Route path="/artists" element={<Artists />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/contact" element={<div>Contacto</div>} />
 
-          {/* Rutas del área privada, protegidas según el nivel de usuario */}
-          <Route
-            path="/admin"
-            element={
-              <PrivateRoute levelRequired={1}>  {/* Protege esta ruta solo para level 1 */}
-                <Admin />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <PrivateRoute levelRequired={2}>  {/* Protege esta ruta solo para level 2 */}
-                <Profile />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/artworks"
-            element={
-              <PrivateRoute levelRequired={2}>  {/* Protege esta ruta solo para level 2 */}
-                <Artworks />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/artworks/:id"
-            element={
-              <PrivateRoute levelRequired={2}>  {/* Protege esta ruta solo para level 2 */}
-                <ArtworkDetail />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
+            {/* Rutas del área privada, protegidas según el nivel de usuario */}
+            <Route
+              path="/admin"
+              element={
+                <PrivateRoute levelRequired={1}>  {/* Protege esta ruta solo para level 1 */}
+                  <Admin />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <PrivateRoute levelRequired={2}>  {/* Protege esta ruta solo para level 2 */}
+                  <Profile />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/artworks"
+              element={
+                <PrivateRoute levelRequired={2}>  {/* Protege esta ruta solo para level 2 */}
+                  <Artworks />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/artworks/:id"
+              element={
+                <PrivateRoute levelRequired={2}>  {/* Protege esta ruta solo para level 2 */}
+                  <ArtworkDetail />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </div>
         <Footer />  {/* Footer con enlaces y redes sociales */}
       </Router>
     </AuthProvider>
