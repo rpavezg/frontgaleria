@@ -25,19 +25,19 @@ function Home() {
       <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel" style={{ margin: 0 }}>
         <div className="carousel-inner">
           <div className="carousel-item active">
-            <img src="https://ibb.co/QJS1QLg" className="d-block w-100" alt="..." style={{ margin: 0, padding: 0 }} />
+            <img src="https://i.ibb.co/zm90xpM/1-artNV.jpg" alt="1-artNV" className="d-block w-100" style={{ margin: 0, padding: 0 }} />
           </div>
           <div className="carousel-item">
-            <img src="https://ibb.co/ThSbRYq" className="d-block w-100" alt="..." style={{ margin: 0, padding: 0 }} />
+            <img src="https://i.ibb.co/zm90xpM/2-artNV.jpg" alt="2-artNV" className="d-block w-100" style={{ margin: 0, padding: 0 }} />
           </div>
           <div className="carousel-item">
-            <img src="https://ibb.co/QPh9wR0" className="d-block w-100" alt="..." style={{ margin: 0, padding: 0 }} />
+            <img src="https://i.ibb.co/zm90xpM/3-artNV.jpg" alt="3-artNV" className="d-block w-100" style={{ margin: 0, padding: 0 }} />
           </div>
           <div className="carousel-item">
-            <img src="https://ibb.co/tsk243j" className="d-block w-100" alt="..." style={{ margin: 0, padding: 0 }} />
+            <img src="https://i.ibb.co/zm90xpM/4-artNV.jpg" alt="4-artNV" className="d-block w-100" style={{ margin: 0, padding: 0 }} />
           </div>
           <div className="carousel-item">
-            <img src="https://ibb.co/fYmzhP2" className="d-block w-100" alt="..." style={{ margin: 0, padding: 0 }} />
+            <img src="https://i.ibb.co/zm90xpM/5-artNV.jpg" alt="5-artNV" className="d-block w-100" style={{ margin: 0, padding: 0 }} />
           </div>
         </div>
       </div>
