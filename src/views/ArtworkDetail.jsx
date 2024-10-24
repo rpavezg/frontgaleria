@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from '../axiosConfig'; // Ajusta el path según la estructura de tu proyecto
-
+import axios from '../../axiosConfig'; 
 
 const ArtworkDetail = () => {
   const { id } = useParams();  // Obtener el ID de la obra desde la URL
