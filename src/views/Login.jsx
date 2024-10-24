@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from '../../axiosConfig'; // Importar la configuración de Axios
+import axios from '../../axiosConfig'
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
