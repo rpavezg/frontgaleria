@@ -13,7 +13,7 @@ const Profile = () => {
       return;
     }
 
-    axios.get('/api/protected/profile', {
+    axios.get('/protected/profile', {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(response => {
