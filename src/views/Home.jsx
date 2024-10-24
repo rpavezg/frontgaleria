@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../../axiosConfig'; // Asegúrate de que esta ruta sea correcta
+import axios from '../../axiosConfig';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel } from 'bootstrap';
 

@@ -1,7 +1,11 @@
 import axios from 'axios';
 
-const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5000/api', // Cambia esto si tu backend está en un puerto o dominio diferente
+// Crear una instancia de Axios con la configuración de la URL base
+const instance = axios.create({
+  baseURL: 'https://backendgaleria.onrender.com/api', // URL base de tu backend en Render
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
-export default axiosInstance;
+export default instance;

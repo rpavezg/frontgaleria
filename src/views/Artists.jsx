@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../../axiosConfig'; // Importa la configuración de Axios con la base URL del backend
+import axios from '../../axiosConfig';
 
 const Artists = () => {
   const [artists, setArtists] = useState([]);

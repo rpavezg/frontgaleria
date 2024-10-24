@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../axiosConfig'; // Ajusta el path según la estructura de tu proyecto
+
 
 const Artworks = () => {
   const [artworks, setArtworks] = useState([]);
