@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from '../../axiosConfig';
+import axios from '../../axiosConfig'; // Importar la configuración de Axios
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -13,10 +13,8 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', formData);
-      // Guardar el token en el localStorage
+      const response = await axios.post('/auth/login', formData); // La URL se resuelve con la base URL configurada
       localStorage.setItem('token', response.data.token);
-      // Redirigir basado en el nivel del usuario
       if (response.data.user.level === 1) {
         navigate('/admin');
       } else if (response.data.user.level === 2) {
