@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom';
 import axios from '../../axiosConfig'; 
 
 const ArtworkDetail = () => {
-  const { id } = useParams();  // Obtener el ID de la obra desde la URL
+  const { id } = useParams();  // obtener id obra desde url
   const [artwork, setArtwork] = useState({});
   const [likes, setLikes] = useState(0);
 
   useEffect(() => {
-    // Llamada para obtener los detalles de la obra de arte por ID
+    // Detalle obras por id
     axios.get(`/api/artworks/${id}`)
       .then(response => {
         setArtwork(response.data);
@@ -19,7 +19,7 @@ const ArtworkDetail = () => {
   }, [id]);
 
   const handleLike = () => {
-    // Lógica para dar "me gusta" a la obra
+    // Me gusta
     axios.post(`/api/artworks/${id}/like`)
       .then(response => {
         setLikes(likes + 1);
@@ -30,7 +30,7 @@ const ArtworkDetail = () => {
   };
 
   const handleBid = () => {
-    // Lógica para hacer una oferta en la obra de arte
+    // Ofertar
     const bidAmount = prompt("Ingresa el monto de tu oferta:");
     if (bidAmount) {
       axios.post(`/api/artworks/${id}/bid`, { bid: bidAmount })

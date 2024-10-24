@@ -2,208 +2,178 @@ import React, { useState, useEffect } from 'react';
 import axios from '../../axiosConfig';
 
 const Admin = () => {
-  const [obrasOfertadas, setObrasOfertadas] = useState([]);
-  const [usuarios, setUsuarios] = useState([]);
-  const [artistas, setArtistas] = useState([]);
+  const [artists, setArtists] = useState([]);
+  const [artworks, setArtworks] = useState([]);
   const [selectedArtist, setSelectedArtist] = useState(null);
-  const [artistFormData, setArtistFormData] = useState({ nombre: '', biografia: '', nacionalidad: '', nacimiento: '', img: '' });
-  const [obras, setObras] = useState([]);
-  const [selectedObra, setSelectedObra] = useState(null);
-  const [obraFormData, setObraFormData] = useState({ id_artista: '', nombre: '', descripcion: '', precio: '', estado: '', img: '' });
+  const [artistForm, setArtistForm] = useState({ nombre: '', biografia: '', nacionalidad: '', nacimiento: '', img: '' });
+  const [selectedArtwork, setSelectedArtwork] = useState(null);
+  const [artworkForm, setArtworkForm] = useState({ nombre: '', descripcion: '', precio: '', estado: '', img: '', id_artista: '' });
 
   useEffect(() => {
-    // Fetching data from the backend
-    const fetchData = async () => {
-      try {
-        const obrasOfertadasResponse = await axios.get('/api/admin/obras-ofertadas');
-        setObrasOfertadas(obrasOfertadasResponse.data);
-
-        const usuariosResponse = await axios.get('/api/admin/usuarios');
-        setUsuarios(usuariosResponse.data);
-
-        const artistasResponse = await axios.get('/api/artists');
-        setArtistas(artistasResponse.data);
-
-        const obrasDataResponse = await axios.get('/api/admin/obras');
-        setObras(obrasDataResponse.data);
-      } catch (error) {
-        console.error('Error al cargar datos:', error);
-      }
-    };
-
-    fetchData();
+    fetchArtists();
+    fetchArtworks();
   }, []);
 
+  const fetchArtists = async () => {
+    try {
+      const response = await axios.get('/api/artists');
+      setArtists(response.data);
+    } catch (error) {
+      console.error('Error al obtener los artistas:', error);
+    }
+  };
+
+  const fetchArtworks = async () => {
+    try {
+      const response = await axios.get('/api/artworks');
+      setArtworks(response.data);
+    } catch (error) {
+      console.error('Error al obtener las obras:', error);
+    }
+  };
+
   const handleArtistChange = (e) => {
-    setSelectedArtist(artistas.find(artist => artist.id === Number(e.target.value)));
+    setArtistForm({ ...artistForm, [e.target.name]: e.target.value });
   };
 
-  const handleObraChange = (e) => {
-    setSelectedObra(obras.find(obra => obra.id === Number(e.target.value)));
+  const handleArtworkChange = (e) => {
+    setArtworkForm({ ...artworkForm, [e.target.name]: e.target.value });
   };
 
-  const handleArtistFormChange = (e) => {
-    setArtistFormData({ ...artistFormData, [e.target.name]: e.target.value });
+  const handleArtistSelect = (artist) => {
+    setSelectedArtist(artist);
+    setArtistForm(artist);
   };
 
-  const handleObraFormChange = (e) => {
-    setObraFormData({ ...obraFormData, [e.target.name]: e.target.value });
+  const handleArtworkSelect = (artwork) => {
+    setSelectedArtwork(artwork);
+    setArtworkForm(artwork);
   };
 
-  const handleUpdateArtist = async () => {
+  const handleArtistSubmit = async (e) => {
+    e.preventDefault();
     try {
-      await axios.put(`/api/admin/modify-artist/${selectedArtist.id}`, artistFormData);
-      alert('Artista actualizado exitosamente');
-    } catch (error) {
-      console.error('Error al actualizar artista:', error);
-    }
-  };
-
-  const handleDeleteArtist = async () => {
-    try {
-      await axios.delete(`/api/admin/delete-artist/${selectedArtist.id}`);
-      alert('Artista eliminado exitosamente');
+      if (selectedArtist) {
+        // Actualizar artista existente
+        await axios.put(`/api/artists/${selectedArtist.id}`, artistForm);
+        alert('Artista actualizado exitosamente');
+      } else {
+        // Crear nuevo artista
+        await axios.post('/api/artists', artistForm);
+        alert('Artista creado exitosamente');
+      }
+      setArtistForm({ nombre: '', biografia: '', nacionalidad: '', nacimiento: '', img: '' });
       setSelectedArtist(null);
-      setArtistFormData({ nombre: '', biografia: '', nacionalidad: '', nacimiento: '', img: '' });
+      fetchArtists();
     } catch (error) {
-      console.error('Error al eliminar artista:', error);
+      console.error('Error al guardar el artista:', error);
     }
   };
 
-  const handleUpdateObra = async () => {
+  const handleArtworkSubmit = async (e) => {
+    e.preventDefault();
     try {
-      await axios.put(`/api/admin/modify-obra/${selectedObra.id}`, obraFormData);
-      alert('Obra actualizada exitosamente');
+      if (selectedArtwork) {
+        // Actualizar obra existente
+        await axios.put(`/api/artworks/${selectedArtwork.id}`, artworkForm);
+        alert('Obra actualizada exitosamente');
+      } else {
+        // Crear nueva obra
+        await axios.post('/api/artworks', artworkForm);
+        alert('Obra creada exitosamente');
+      }
+      setArtworkForm({ nombre: '', descripcion: '', precio: '', estado: '', img: '', id_artista: '' });
+      setSelectedArtwork(null);
+      fetchArtworks();
     } catch (error) {
-      console.error('Error al actualizar obra:', error);
+      console.error('Error al guardar la obra:', error);
     }
   };
 
-  const handleDeleteObra = async () => {
-    try {
-      await axios.delete(`/api/admin/delete-obra/${selectedObra.id}`);
-      alert('Obra eliminada exitosamente');
-      setSelectedObra(null);
-      setObraFormData({ id_artista: '', nombre: '', descripcion: '', precio: '', estado: '', img: '' });
-    } catch (error) {
-      console.error('Error al eliminar obra:', error);
+  const handleArtistDelete = async () => {
+    if (selectedArtist) {
+      try {
+        await axios.delete(`/api/artists/${selectedArtist.id}`);
+        alert('Artista eliminado exitosamente');
+        setArtistForm({ nombre: '', biografia: '', nacionalidad: '', nacimiento: '', img: '' });
+        setSelectedArtist(null);
+        fetchArtists();
+      } catch (error) {
+        console.error('Error al eliminar el artista:', error);
+      }
+    }
+  };
+
+  const handleArtworkDelete = async () => {
+    if (selectedArtwork) {
+      try {
+        await axios.delete(`/api/artworks/${selectedArtwork.id}`);
+        alert('Obra eliminada exitosamente');
+        setArtworkForm({ nombre: '', descripcion: '', precio: '', estado: '', img: '', id_artista: '' });
+        setSelectedArtwork(null);
+        fetchArtworks();
+      } catch (error) {
+        console.error('Error al eliminar la obra:', error);
+      }
     }
   };
 
   return (
     <div className="container mt-4">
       <h2>Panel de Administración</h2>
-      
-      {/* Sección de Resumen de Obras Ofertadas */}
-      <section className="mt-4">
-        <h3>Obras Ofertadas</h3>
-        <ul className="list-group">
-          {obrasOfertadas.map((obra) => (
-            <li key={obra.id} className="list-group-item">
-              {obra.nombre} - Precio Ofertado: ${obra.precio}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Sección de Usuarios Registrados */}
-      <section className="mt-4">
-        <h3>Usuarios Registrados</h3>
-        <ul className="list-group">
-          {usuarios.map((usuario) => (
-            <li key={usuario.id} className="list-group-item">
-              {usuario.email} - Nivel: {usuario.level}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Sección de Crear/Modificar Artista */}
-      <section className="mt-4">
-        <h3>Crear/Modificar Artista</h3>
-        <select className="form-control mb-2" onChange={handleArtistChange}>
-          <option value="">Seleccionar Artista</option>
-          {artistas.map((artist) => (
-            <option key={artist.id} value={artist.id}>
+      <div className="mt-5">
+        <h4>Crear o Modificar Artista</h4>
+        <select onChange={(e) => handleArtistSelect(JSON.parse(e.target.value))} className="form-control mb-3">
+          <option value="">Seleccione un artista para editar</option>
+          {artists.map((artist) => (
+            <option key={artist.id} value={JSON.stringify(artist)}>
               {artist.nombre}
             </option>
           ))}
         </select>
-
-        <form>
-          <div className="form-group">
-            <label>Nombre</label>
-            <input type="text" name="nombre" className="form-control" value={artistFormData.nombre} onChange={handleArtistFormChange} />
-          </div>
-          <div className="form-group">
-            <label>Biografía</label>
-            <textarea name="biografia" className="form-control" value={artistFormData.biografia} onChange={handleArtistFormChange}></textarea>
-          </div>
-          <div className="form-group">
-            <label>Nacionalidad</label>
-            <input type="text" name="nacionalidad" className="form-control" value={artistFormData.nacionalidad} onChange={handleArtistFormChange} />
-          </div>
-          <div className="form-group">
-            <label>Nacimiento</label>
-            <input type="date" name="nacimiento" className="form-control" value={artistFormData.nacimiento} onChange={handleArtistFormChange} />
-          </div>
-          <div className="form-group">
-            <label>Imagen URL</label>
-            <input type="text" name="img" className="form-control" value={artistFormData.img} onChange={handleArtistFormChange} />
-          </div>
-          <button type="button" className="btn btn-success mt-2" onClick={handleUpdateArtist}>Actualizar Artista</button>
-          <button type="button" className="btn btn-danger mt-2 ml-2" onClick={handleDeleteArtist}>Eliminar Artista</button>
+        <form onSubmit={handleArtistSubmit}>
+          <input type="text" name="nombre" placeholder="Nombre" value={artistForm.nombre} onChange={handleArtistChange} className="form-control mb-2" required />
+          <input type="text" name="biografia" placeholder="Biografía" value={artistForm.biografia} onChange={handleArtistChange} className="form-control mb-2" required />
+          <input type="text" name="nacionalidad" placeholder="Nacionalidad" value={artistForm.nacionalidad} onChange={handleArtistChange} className="form-control mb-2" required />
+          <input type="date" name="nacimiento" placeholder="Fecha de Nacimiento" value={artistForm.nacimiento} onChange={handleArtistChange} className="form-control mb-2" required />
+          <input type="text" name="img" placeholder="URL de Imagen" value={artistForm.img} onChange={handleArtistChange} className="form-control mb-2" required />
+          <button type="submit" className="btn btn-primary me-2">Guardar Artista</button>
+          <button type="button" className="btn btn-danger" onClick={handleArtistDelete}>Eliminar Artista</button>
         </form>
-      </section>
+      </div>
 
-      {/* Sección de Crear/Modificar Obra */}
-      <section className="mt-4">
-        <h3>Crear/Modificar Obra</h3>
-        <select className="form-control mb-2" onChange={handleObraChange}>
-          <option value="">Seleccionar Obra</option>
-          {obras.map((obra) => (
-            <option key={obra.id} value={obra.id}>
-              {obra.nombre}
+      <div className="mt-5">
+        <h4>Crear o Modificar Obra</h4>
+        <select onChange={(e) => handleArtworkSelect(JSON.parse(e.target.value))} className="form-control mb-3">
+          <option value="">Seleccione una obra para editar</option>
+          {artworks.map((artwork) => (
+            <option key={artwork.id} value={JSON.stringify(artwork)}>
+              {artwork.nombre}
             </option>
           ))}
         </select>
-
-        <form>
-          <div className="form-group">
-            <label>Artista</label>
-            <select name="id_artista" className="form-control" value={obraFormData.id_artista} onChange={handleObraFormChange}>
-              <option value="">Seleccionar Artista</option>
-              {artistas.map((artist) => (
-                <option key={artist.id} value={artist.id}>
-                  {artist.nombre}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="form-group">
-            <label>Nombre</label>
-            <input type="text" name="nombre" className="form-control" value={obraFormData.nombre} onChange={handleObraFormChange} />
-          </div>
-          <div className="form-group">
-            <label>Descripción</label>
-            <textarea name="descripcion" className="form-control" value={obraFormData.descripcion} onChange={handleObraFormChange}></textarea>
-          </div>
-          <div className="form-group">
-            <label>Precio</label>
-            <input type="number" name="precio" className="form-control" value={obraFormData.precio} onChange={handleObraFormChange} />
-          </div>
-          <div className="form-group">
-            <label>Estado</label>
-            <select name="estado" className="form-control" value={obraFormData.estado} onChange={handleObraFormChange}>
-              <option value="">Seleccionar Estado</option>
-              <option value="1">Disponible</option>
-              <option value="0">No disponible</option>
-            </select>
-          </div>
-          <button type="button" className="btn btn-success mt-2" onClick={handleUpdateObra}>Actualizar Obra</button>
-          <button type="button" className="btn btn-danger mt-2 ml-2" onClick={handleDeleteObra}>Eliminar Obra</button>
+        <form onSubmit={handleArtworkSubmit}>
+          <input type="text" name="nombre" placeholder="Nombre" value={artworkForm.nombre} onChange={handleArtworkChange} className="form-control mb-2" required />
+          <input type="text" name="descripcion" placeholder="Descripción" value={artworkForm.descripcion} onChange={handleArtworkChange} className="form-control mb-2" required />
+          <input type="number" name="precio" placeholder="Precio" value={artworkForm.precio} onChange={handleArtworkChange} className="form-control mb-2" required />
+          <select name="estado" value={artworkForm.estado} onChange={handleArtworkChange} className="form-control mb-2" required>
+            <option value="">Estado</option>
+            <option value="1">Disponible</option>
+            <option value="0">No disponible</option>
+          </select>
+          <input type="text" name="img" placeholder="URL de Imagen" value={artworkForm.img} onChange={handleArtworkChange} className="form-control mb-2" required />
+          <select name="id_artista" value={artworkForm.id_artista} onChange={handleArtworkChange} className="form-control mb-2" required>
+            <option value="">Seleccione un artista</option>
+            {artists.map((artist) => (
+              <option key={artist.id} value={artist.id}>
+                {artist.nombre}
+              </option>
+            ))}
+          </select>
+          <button type="submit" className="btn btn-primary me-2">Guardar Obra</button>
+          <button type="button" className="btn btn-danger" onClick={handleArtworkDelete}>Eliminar Obra</button>
         </form>
-      </section>
+      </div>
     </div>
   );
 };
