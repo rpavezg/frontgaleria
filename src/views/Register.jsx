@@ -15,7 +15,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('/register', formData)
+    axios.post('auth/register', formData)
       .then(response => {
         alert('Usuario registrado exitosamente');
       })
