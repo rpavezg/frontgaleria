@@ -1,30 +1,16 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext'; // Contexto de autenticación
+import { AuthContext } from '../context/AuthContext';
 
 function Navbar() {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // Función para manejar la redirección después del login
-  const handleLoginRedirect = () => {
-    if (user?.level === 1) {
-      navigate('/admin');
-    } else if (user?.level === 2) {
-      navigate('/profile');
-    }
-  };
-
-  // Ejecuta la redirección si el usuario ha iniciado sesión
-  if (user) {
-    handleLoginRedirect();
-  }
-
   return (
     <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-black">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">Galería</Link>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">

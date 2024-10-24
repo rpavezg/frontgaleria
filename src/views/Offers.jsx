@@ -6,7 +6,7 @@ const Likes = () => {
 
   useEffect(() => {
     const fetchLikes = async () => {
-      const response = await axios.get('/api/protected/likes', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+      const response = await axios.get('/api/protected/offers', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
       setLikes(response.data);
     };
 
@@ -15,7 +15,7 @@ const Likes = () => {
 
   return (
     <div className="container mt-4">
-      <h2>Me Gusta</h2>
+      <h2>Ofertado</h2>
       <div className="row">
         {likes.map(like => (
           <div key={like.id} className="col-md-4">

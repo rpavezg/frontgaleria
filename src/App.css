@@ -1,47 +1,49 @@
 #root {
   max-width: 100%;
   margin: 0 auto;
+  padding: 0;
+}
 
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.carousel,
+.carousel-inner,
+.carousel-item,
+img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+
+.section-container {
+  width: 100%;
+  margin: 0;
+  padding: 2rem;
 }
 
 .card-container {
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  justify-content: flex-start; 
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.footer {
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 2rem 0;
+  text-align: center;
 }
 
 .card {
- 
-  width: 100%;
   max-width: 600px;
-  padding: 0;
+  margin: 1rem auto;
+}
+
+.btn {
+  margin-top: 10px;
 }

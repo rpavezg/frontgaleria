@@ -9,12 +9,11 @@ const Profile = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
-      // Si no hay token, redirige al login
       navigate('/login');
       return;
     }
 
-    axios.get('/api/profile', {
+    axios.get('/api/protected/profile', {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(response => {
@@ -22,11 +21,8 @@ const Profile = () => {
     })
     .catch(error => {
       console.error("Error al obtener el perfil:", error);
-      if (error.response && error.response.status === 401) {
-        // Si el token no es válido o expiró, redirige al login
-        localStorage.removeItem('token');
-        navigate('/login');
-      }
+      localStorage.removeItem('token');
+      navigate('/login');
     });
   }, [navigate]);
 
@@ -36,7 +32,6 @@ const Profile = () => {
       <p><strong>Email:</strong> {profile.email}</p>
       <p><strong>Nombre:</strong> {profile.nombre}</p>
       <p><strong>Apellido:</strong> {profile.apellido}</p>
-      {/* Aquí puedes agregar la opción para modificar el perfil */}
     </div>
   );
 };

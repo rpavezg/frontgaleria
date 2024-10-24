@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom'; // Usar HashRouter si hay problemas de redirección en el servidor
+import { HashRouter as Router, Route, Routes } from 'react-router-dom'; // Usar HashRouter para evitar problemas de redirección
 import Home from './views/Home';
 import Artists from './views/Artists';
 import Register from './views/Register';
@@ -8,6 +8,9 @@ import Admin from './views/Admin';
 import Profile from './views/Profile';
 import Artworks from './views/Artworks';
 import ArtworkDetail from './views/ArtworkDetail';
+import CreateModifyArtist from './views/CreateModifyArtist';
+import CreateModifyArtwork from './views/CreateModifyArtwork';
+import Contact from './views/Contact';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import PrivateRoute from './components/PrivateRoute';  
@@ -27,7 +30,7 @@ function App() {
             <Route path="/artists" element={<Artists />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/contact" element={<div>Contacto</div>} />
+            <Route path="/contact" element={<Contact />} />
 
             {/* Rutas del área privada, protegidas según el nivel de usuario */}
             <Route
@@ -35,6 +38,22 @@ function App() {
               element={
                 <PrivateRoute levelRequired={1}>  {/* Protege esta ruta solo para level 1 */}
                   <Admin />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/admin/create-artist"
+              element={
+                <PrivateRoute levelRequired={1}>  {/* Protege esta ruta solo para level 1 */}
+                  <CreateModifyArtist />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/admin/create-artwork"
+              element={
+                <PrivateRoute levelRequired={1}>  {/* Protege esta ruta solo para level 1 */}
+                  <CreateModifyArtwork />
                 </PrivateRoute>
               }
             />

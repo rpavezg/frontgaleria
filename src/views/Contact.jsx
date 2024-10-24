@@ -14,12 +14,12 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Formulario enviado (solo visual, no funcional)');
+    alert('Este formulario no es funcional, es solo una visualización.');
   };
 
   return (
     <div className="container mt-4">
-      <h2>Contacto</h2>
+      <h2>Formulario de Contacto</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Nombre</label>
