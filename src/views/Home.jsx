@@ -8,7 +8,7 @@ function Home() {
   useEffect(() => {
     const fetchArtists = async () => {
       try {
-        const response = await axios.get('/api/artists');
+        const response = await axios.get('/artists');
         setArtists(response.data);
       } catch (error) {
         console.error('Error al cargar los artistas:', error);

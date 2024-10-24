@@ -16,7 +16,7 @@ const Admin = () => {
 
   const fetchArtists = async () => {
     try {
-      const response = await axios.get('/api/artists');
+      const response = await axios.get('/artists');
       setArtists(response.data);
     } catch (error) {
       console.error('Error al obtener los artistas:', error);
@@ -25,7 +25,7 @@ const Admin = () => {
 
   const fetchArtworks = async () => {
     try {
-      const response = await axios.get('/api/artworks');
+      const response = await axios.get('/artworks');
       setArtworks(response.data);
     } catch (error) {
       console.error('Error al obtener las obras:', error);
@@ -55,11 +55,11 @@ const Admin = () => {
     try {
       if (selectedArtist) {
         // Actualizar artista existente
-        await axios.put(`/api/artists/${selectedArtist.id}`, artistForm);
+        await axios.put(`/artists/${selectedArtist.id}`, artistForm);
         alert('Artista actualizado exitosamente');
       } else {
         // Crear nuevo artista
-        await axios.post('/api/artists', artistForm);
+        await axios.post('/artists', artistForm);
         alert('Artista creado exitosamente');
       }
       setArtistForm({ nombre: '', biografia: '', nacionalidad: '', nacimiento: '', img: '' });
@@ -75,11 +75,11 @@ const Admin = () => {
     try {
       if (selectedArtwork) {
         // Actualizar obra existente
-        await axios.put(`/api/artworks/${selectedArtwork.id}`, artworkForm);
+        await axios.put(`/artworks/${selectedArtwork.id}`, artworkForm);
         alert('Obra actualizada exitosamente');
       } else {
         // Crear nueva obra
-        await axios.post('/api/artworks', artworkForm);
+        await axios.post('/artworks', artworkForm);
         alert('Obra creada exitosamente');
       }
       setArtworkForm({ nombre: '', descripcion: '', precio: '', estado: '', img: '', id_artista: '' });
@@ -93,7 +93,7 @@ const Admin = () => {
   const handleArtistDelete = async () => {
     if (selectedArtist) {
       try {
-        await axios.delete(`/api/artists/${selectedArtist.id}`);
+        await axios.delete(`/artists/${selectedArtist.id}`);
         alert('Artista eliminado exitosamente');
         setArtistForm({ nombre: '', biografia: '', nacionalidad: '', nacimiento: '', img: '' });
         setSelectedArtist(null);
@@ -107,7 +107,7 @@ const Admin = () => {
   const handleArtworkDelete = async () => {
     if (selectedArtwork) {
       try {
-        await axios.delete(`/api/artworks/${selectedArtwork.id}`);
+        await axios.delete(`/artworks/${selectedArtwork.id}`);
         alert('Obra eliminada exitosamente');
         setArtworkForm({ nombre: '', descripcion: '', precio: '', estado: '', img: '', id_artista: '' });
         setSelectedArtwork(null);
