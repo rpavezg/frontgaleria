@@ -10,17 +10,24 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post('/api/login', formData)
-      .then(response => {
-        localStorage.setItem('token', response.data.token);
+    try {
+      const response = await axios.post('http://localhost:5000/api/auth/login', formData);
+      // Guardar el token en el localStorage
+      localStorage.setItem('token', response.data.token);
+      // Redirigir basado en el nivel del usuario
+      if (response.data.user.level === 1) {
+        navigate('/admin');
+      } else if (response.data.user.level === 2) {
         navigate('/profile');
-      })
-      .catch(error => {
-        console.error("Error al iniciar sesión:", error);
-        alert('Credenciales incorrectas');
-      });
+      } else {
+        navigate('/');
+      }
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      alert('Credenciales incorrectas');
+    }
   };
 
   return (
