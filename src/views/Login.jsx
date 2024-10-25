@@ -22,10 +22,13 @@ const Login = () => {
 
       // Redirigir al usuario según su nivel
       if (user.level === 1) {
+        console.log("Redirigiendo a /admin");
         navigate('/admin');
       } else if (user.level === 2) {
+        console.log("Redirigiendo a /profile");
         navigate('/profile');
       } else {
+        console.log("Redirigiendo a /");
         navigate('/'); // Redirigir al home si no hay nivel específico
       }
     } catch (error) {
