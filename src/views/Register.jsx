@@ -19,14 +19,15 @@ const Register = () => {
     e.preventDefault();
     try {
       // Registrar el usuario en el backend
-      const response = await axios.post('/auth/register', formData);
+      await axios.post('/auth/register', formData);
 
-      // Guardar el token en localStorage
+      // Login automático después del registro
       const loginResponse = await axios.post('/auth/login', {
         email: formData.email,
         password: formData.password,
       });
 
+      // Guardar el token en localStorage
       localStorage.setItem('token', loginResponse.data.token);
 
       // Redirigir al perfil del usuario
