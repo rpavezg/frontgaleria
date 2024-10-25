@@ -19,24 +19,27 @@ const Register = () => {
     e.preventDefault();
     try {
       // Registrar el usuario en el backend
-      const response = await axios.post('/auth/register', formData);
-  
-      // Iniciar sesión automáticamente después de registrar
+      await axios.post('/auth/register', formData);
+
+      // Iniciar sesión automáticamente
       const loginResponse = await axios.post('/auth/login', {
         email: formData.email,
         password: formData.password,
       });
-  
+
       localStorage.setItem('token', loginResponse.data.token);
-  
+
       // Redirigir al perfil del usuario
-      navigate('/profile');
+      if (loginResponse.data.user.level === 1) {
+        navigate('/admin');
+      } else {
+        navigate('/profile');
+      }
     } catch (error) {
       console.error("Error al registrar el usuario:", error);
       alert('Error al registrar usuario');
     }
   };
-  
 
   return (
     <div className="container mt-4">
