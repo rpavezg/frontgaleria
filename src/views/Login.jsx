@@ -13,13 +13,20 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Realizar la solicitud de inicio de sesión al backend
       const response = await axios.post('/auth/login', formData);
-      localStorage.setItem('token', response.data.token);
+      const { token, user } = response.data;
 
-      if (response.data.user.level === 1) {
+      // Guardar el token en localStorage
+      localStorage.setItem('token', token);
+
+      // Redirigir al usuario según su nivel
+      if (user.level === 1) {
         navigate('/admin');
-      } else if (response.data.user.level === 2) {
+      } else if (user.level === 2) {
         navigate('/profile');
+      } else {
+        navigate('/'); // Redirigir al home si no hay nivel específico
       }
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
