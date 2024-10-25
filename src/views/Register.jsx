@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from '../../axiosConfig';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -8,21 +9,32 @@ const Register = () => {
     apellido: '',
     password: ''
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post('auth/register', formData)
-      .then(response => {
-        alert('Usuario registrado exitosamente');
-      })
-      .catch(error => {
-        console.error("Error al registrar el usuario:", error);
-        alert('Error al registrar usuario');
+    try {
+      // Registrar el usuario en el backend
+      const response = await axios.post('/auth/register', formData);
+
+      // Guardar el token en localStorage
+      const loginResponse = await axios.post('/auth/login', {
+        email: formData.email,
+        password: formData.password,
       });
+
+      localStorage.setItem('token', loginResponse.data.token);
+
+      // Redirigir al perfil del usuario
+      navigate('/profile');
+    } catch (error) {
+      console.error("Error al registrar el usuario:", error);
+      alert('Error al registrar usuario');
+    }
   };
 
   return (
@@ -43,7 +55,7 @@ const Register = () => {
         </div>
         <div className="form-group">
           <label>Contraseña</label>
-          <input type="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required />
+          <input type="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required autoComplete="new-password" />
         </div>
         <button type="submit" className="btn btn-primary mt-2">Registrarse</button>
       </form>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from '../../axiosConfig'
+import axios from '../../axiosConfig';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -13,14 +13,19 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/auth/login', formData); // La URL se resuelve con la base URL configurada
+      // Llamada al backend para hacer login
+      const response = await axios.post('/auth/login', formData);
+
+      // Guardar el token en localStorage
       localStorage.setItem('token', response.data.token);
+
+      // Redirigir según el nivel del usuario
       if (response.data.user.level === 1) {
-        navigate('/admin');
+        navigate('/admin'); // Redirige a admin si es nivel 1
       } else if (response.data.user.level === 2) {
-        navigate('/profile');
+        navigate('/profile'); // Redirige a profile si es nivel 2
       } else {
-        navigate('/');
+        navigate('/'); // Redirige al home si el nivel no coincide
       }
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
@@ -38,7 +43,7 @@ const Login = () => {
         </div>
         <div className="form-group">
           <label>Contraseña</label>
-          <input type="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required />
+          <input type="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required autoComplete="current-password" />
         </div>
         <button type="submit" className="btn btn-primary mt-2">Iniciar sesión</button>
       </form>
