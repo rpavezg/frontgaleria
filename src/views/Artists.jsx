@@ -9,7 +9,7 @@ const Artists = () => {
   useEffect(() => {
     const fetchArtists = async () => {
       try {
-        const response = await axios.get('/artists');
+        const response = await axios.get('/artists'); // Ruta correcta
         setArtists(response.data);
       } catch (error) {
         console.error('Error al cargar los artistas:', error);
@@ -19,12 +19,10 @@ const Artists = () => {
     fetchArtists();
   }, []);
 
-  // Calcular los artistas para la página actual
   const indexOfLastArtist = currentPage * artistsPerPage;
   const indexOfFirstArtist = indexOfLastArtist - artistsPerPage;
   const currentArtists = artists.slice(indexOfFirstArtist, indexOfLastArtist);
 
-  // Manejar el cambio de página
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
@@ -37,9 +35,9 @@ const Artists = () => {
             style={{
               maxWidth: '800px',
               width: '100%',
-              height: '300px', // Establece una altura uniforme para todas las cards
+              height: '300px',
               display: 'flex',
-              justifyContent: 'center'
+              justifyContent: 'center',
             }}
             key={artist.id}
           >
@@ -53,15 +51,13 @@ const Artists = () => {
                     objectFit: 'cover',
                     height: '100%',
                     width: '100%',
-                  }} // Ajusta la imagen para llenar completamente el contenedor
+                  }}
                 />
               </div>
               <div className="col-md-8 d-flex align-items-center">
                 <div className="card-body">
                   <h5 className="card-title text-center">{artist.nombre}</h5>
-                  <p className="card-text text-start" style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                    {artist.biografia}
-                  </p>
+                  <p className="card-text text-start">{artist.biografia}</p>
                   <p className="card-text text-end">
                     <small className="text-muted">Nacionalidad: {artist.nacionalidad}</small>
                   </p>
