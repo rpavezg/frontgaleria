@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from '../../axiosConfig'; 
+import axios from '../../axiosConfig';
 
 const Artworks = () => {
   const [artworks, setArtworks] = useState([]);
@@ -24,14 +24,11 @@ const Artworks = () => {
   };
 
   const handleBid = async (id) => {
-    const bidAmount = prompt("Ingresa el monto de tu oferta:");
-    if (bidAmount) {
-      try {
-        await axios.post(`/protected/artworks/${id}/bid`, { bid: bidAmount });
-        alert("Oferta realizada con éxito");
-      } catch (error) {
-        console.error("Error al realizar la oferta:", error);
-      }
+    try {
+      await axios.post(`/protected/artworks/${id}/bid`);
+      alert("Oferta registrada con éxito");
+    } catch (error) {
+      console.error("Error al registrar la oferta:", error);
     }
   };
 
