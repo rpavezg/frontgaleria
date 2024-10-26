@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from 'react';
-import axios from '../../axiosConfig';
+import axios from 'axios';
 
 export const AuthContext = createContext();
 
@@ -9,9 +9,15 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      axios.get('/auth/verify-token')
-        .then(response => setUser(response.data.user))
-        .catch(() => localStorage.removeItem('token'));
+      axios.get('/auth/verify-token', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(response => {
+        setUser(response.data.user);
+      })
+      .catch(() => {
+        localStorage.removeItem('token');
+      });
     }
   }, []);
 

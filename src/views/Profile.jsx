@@ -1,37 +1,47 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from '../../axiosConfig';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 const Profile = () => {
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState(null); // Cambiamos a `null` para validar el perfil cargado
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/login');
-      return;
-    }
+    const fetchProfile = async () => {
+      try {
+        const response = await axios.get('/protected/profile', {
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        });
+        setProfile(response.data.user);
+      } catch (error) {
+        console.error("Error al obtener el perfil:", error);
+        localStorage.removeItem('token');
+        navigate('/login');
+      }
+    };
 
-    axios.get('/protected/profile', {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    .then(response => {
-      setProfile(response.data.user);
-    })
-    .catch(error => {
-      console.error("Error al obtener el perfil:", error);
-      localStorage.removeItem('token');
+    // Si el usuario está autenticado, obtenemos su perfil
+    if (user) {
+      fetchProfile();
+    } else {
       navigate('/login');
-    });
-  }, [navigate]);
+    }
+  }, [user, navigate]);
 
   return (
     <div className="container mt-4">
       <h2>Mi Perfil</h2>
-      <p><strong>Email:</strong> {profile.email}</p>
-      <p><strong>Nombre:</strong> {profile.nombre}</p>
-      <p><strong>Apellido:</strong> {profile.apellido}</p>
+      {profile ? (
+        <>
+          <p><strong>Email:</strong> {profile.email}</p>
+          <p><strong>Nombre:</strong> {profile.nombre}</p>
+          <p><strong>Apellido:</strong> {profile.apellido}</p>
+        </>
+      ) : (
+        <p>Cargando información del perfil...</p>
+      )}
     </div>
   );
 };
