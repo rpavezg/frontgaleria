@@ -6,7 +6,7 @@ const Artworks = () => {
   const [artworks, setArtworks] = useState([]);
 
   useEffect(() => {
-    axios.get('/artworks')
+    axios.get('/api/artworks')
       .then(response => {
         setArtworks(response.data);
       })
