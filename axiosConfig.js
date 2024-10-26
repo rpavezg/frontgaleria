@@ -7,6 +7,7 @@ const instance = axios.create({
   },
 });
 
+// Interceptor para agregar el token en cada solicitud
 instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
@@ -18,12 +19,15 @@ instance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
+// Interceptor para manejar respuestas de error, como el 401
 instance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
       localStorage.removeItem('token'); // Elimina el token si es inválido
-      window.location.href = '/login'; // Redirige al login
+      if (process.env.NODE_ENV === 'production') {
+        window.location.href = '/login'; // Redirige al login en producción
+      }
     }
     return Promise.reject(error);
   }
