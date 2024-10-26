@@ -36,7 +36,7 @@ function Navbar() {
                 )}
                 {user.level === 2 && (
                   <>
-                <Link className="nav-link" to="/artworks">Obras</Link> {/* Nuevo enlace a Obras */}
+
                 <Link className="nav-link" to="/likes">Me gusta</Link>
                 <Link className="nav-link" to="/offers">Ofertados</Link>
                 <Link className="nav-link" to="/profile">Mi Perfil</Link>
