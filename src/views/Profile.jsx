@@ -4,31 +4,36 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const Profile = () => {
-  const [profile, setProfile] = useState(null); // Cambiamos a `null` para validar el perfil cargado
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true); // Estado de carga
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get('/protected/profile', {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-        });
+        const response = await axios.get('/protected/profile');
         setProfile(response.data.user);
       } catch (error) {
         console.error("Error al obtener el perfil:", error);
         localStorage.removeItem('token');
         navigate('/login');
+      } finally {
+        setLoading(false);
       }
     };
 
-    // Si el usuario está autenticado, obtenemos su perfil
+    // Verifica si el usuario está autenticado antes de obtener el perfil
     if (user) {
       fetchProfile();
     } else {
       navigate('/login');
     }
   }, [user, navigate]);
+
+  if (loading) {
+    return <p>Cargando información del perfil...</p>;
+  }
 
   return (
     <div className="container mt-4">
@@ -40,7 +45,7 @@ const Profile = () => {
           <p><strong>Apellido:</strong> {profile.apellido}</p>
         </>
       ) : (
-        <p>Cargando información del perfil...</p>
+        <p>Error al cargar el perfil. Vuelve a intentarlo más tarde.</p>
       )}
     </div>
   );
