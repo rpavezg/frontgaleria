@@ -15,7 +15,11 @@ function Navbar() {
         </button>
         <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
           <div className="navbar-nav align-content-end">
-            <Link className="nav-link" to="/artists">Artistas</Link>
+            {!user || user.level === 1 ? ( // Mostrar enlace "Artistas" solo para visitantes y usuarios nivel 1
+              <Link className="nav-link" to="/artists">Artistas</Link>
+            ) : (
+              <Link className="nav-link" to="/artworks">Obras</Link> // Mostrar enlace "Obras" solo para nivel 2
+            )}
             {!user ? (
               <>
                 <Link className="nav-link" to="/register">Registrarse</Link>
@@ -32,9 +36,10 @@ function Navbar() {
                 )}
                 {user.level === 2 && (
                   <>
-                    <Link className="nav-link" to="/likes">Me gusta</Link>
-                    <Link className="nav-link" to="/offers">Ofertados</Link>
-                    <Link className="nav-link" to="/profile">Mi Perfil</Link>
+                <Link className="nav-link" to="/artworks">Obras</Link> {/* Nuevo enlace a Obras */}
+                <Link className="nav-link" to="/likes">Me gusta</Link>
+                <Link className="nav-link" to="/offers">Ofertados</Link>
+                <Link className="nav-link" to="/profile">Mi Perfil</Link>
                   </>
                 )}
                 <Link className="nav-link" to="/" onClick={logout}>Cerrar Sesión</Link>
