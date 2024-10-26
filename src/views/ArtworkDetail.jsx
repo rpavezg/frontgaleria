@@ -9,7 +9,7 @@ const ArtworkDetail = () => {
 
   useEffect(() => {
     // Detalle obras por id
-    axios.get(`/api/artworks/${id}`)
+    axios.get(`/artworks/${id}`)
       .then(response => {
         setArtwork(response.data);
       })
@@ -20,7 +20,7 @@ const ArtworkDetail = () => {
 
   const handleLike = () => {
     // Me gusta
-    axios.post(`/api/artworks/${id}/like`)
+    axios.post(`/artworks/${id}/like`)
       .then(response => {
         setLikes(likes + 1);
       })
@@ -33,7 +33,7 @@ const ArtworkDetail = () => {
     // Ofertar
     const bidAmount = prompt("Ingresa el monto de tu oferta:");
     if (bidAmount) {
-      axios.post(`/api/artworks/${id}/bid`, { bid: bidAmount })
+      axios.post(`/artworks/${id}/bid`, { bid: bidAmount })
         .then(response => {
           alert("Oferta realizada con éxito");
         })

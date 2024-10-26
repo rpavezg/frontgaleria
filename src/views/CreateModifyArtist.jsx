@@ -18,7 +18,7 @@ const CreateModifyArtist = () => {
   useEffect(() => {
     const fetchArtists = async () => {
       try {
-        const response = await axios.get('/api/artists');
+        const response = await axios.get('/artists');
         setArtists(response.data);
       } catch (error) {
         console.error('Error al cargar los artistas:', error);
@@ -60,10 +60,10 @@ const CreateModifyArtist = () => {
     e.preventDefault();
     try {
       if (selectedArtist) {
-        await axios.put(`/api/protected/artists/${selectedArtist.id}`, formData);
+        await axios.put(`/protected/artists/${selectedArtist.id}`, formData);
         alert('Artista actualizado exitosamente');
       } else {
-        await axios.post('/api/protected/artists', formData);
+        await axios.post('/protected/artists', formData);
         alert('Artista creado exitosamente');
       }
       navigate('/admin');
@@ -76,7 +76,7 @@ const CreateModifyArtist = () => {
   const handleDelete = async () => {
     if (selectedArtist) {
       try {
-        await axios.delete(`/api/protected/artists/${selectedArtist.id}`);
+        await axios.delete(`/protected/artists/${selectedArtist.id}`);
         alert('Artista eliminado exitosamente');
         navigate('/admin');
       } catch (error) {

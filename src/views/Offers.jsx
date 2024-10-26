@@ -6,7 +6,7 @@ const Likes = () => {
 
   useEffect(() => {
     const fetchLikes = async () => {
-      const response = await axios.get('/api/protected/offers', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+      const response = await axios.get('/protected/offers', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
       setLikes(response.data);
     };
 

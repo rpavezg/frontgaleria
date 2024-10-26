@@ -20,8 +20,8 @@ const CreateModifyArtwork = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const artworksResponse = await axios.get('/api/artworks');
-        const artistsResponse = await axios.get('/api/artists');
+        const artworksResponse = await axios.get('/artworks');
+        const artistsResponse = await axios.get('/artists');
         setArtworks(artworksResponse.data);
         setArtists(artistsResponse.data);
       } catch (error) {
@@ -66,10 +66,10 @@ const CreateModifyArtwork = () => {
     e.preventDefault();
     try {
       if (selectedArtwork) {
-        await axios.put(`/api/protected/artworks/${selectedArtwork.id}`, formData);
+        await axios.put(`/protected/artworks/${selectedArtwork.id}`, formData);
         alert('Obra actualizada exitosamente');
       } else {
-        await axios.post('/api/protected/artworks', formData);
+        await axios.post('/protected/artworks', formData);
         alert('Obra creada exitosamente');
       }
       navigate('/admin');
@@ -82,7 +82,7 @@ const CreateModifyArtwork = () => {
   const handleDelete = async () => {
     if (selectedArtwork) {
       try {
-        await axios.delete(`/api/protected/artworks/${selectedArtwork.id}`);
+        await axios.delete(`/protected/artworks/${selectedArtwork.id}`);
         alert('Obra eliminada exitosamente');
         navigate('/admin');
       } catch (error) {
