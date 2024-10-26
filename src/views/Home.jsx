@@ -51,34 +51,36 @@ function Home() {
 
       {/* Carrusel de artistas destacados */}
       <section className="container my-5 d-block w-100">
-        <h2 className="text-center mb-4">Artistas Destacados</h2>
-        <div id="artistCarousel" className="carousel slide" data-bs-ride="carousel">
-          <div className="carousel-inner">
-            {artists.slice(0, 3).map((artist, index) => (
-              <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={artist.id}>
-                <div className="d-flex justify-content-center">
-                  <img
-                    src={artist.img}
-                    className="d-block"
-                    alt={artist.nombre}
-                    style={{ maxHeight: '300px', objectFit: 'cover', width: '100%' }}
-                  />
-                  <div className="carousel-caption d-none d-md-block">
-                    <h5>{artist.nombre}</h5>
+      <h2>Artistas Destacados</h2>
+      <div className="carousel slide" data-bs-ride="carousel">
+        <div className="carousel-inner">
+          {artists.slice(0, 3).map((artist, index) => (
+            <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={artist.id}>
+              <div className="card mb-3" style={{ maxWidth: '800px', height: '300px', margin: '0 auto' }}>
+                <div className="row g-0" style={{ height: '100%' }}>
+                  <div className="col-md-4">
+                    <img
+                      src={artist.img}
+                      className="img-fluid rounded-start"
+                      alt={artist.nombre}
+                      style={{ objectFit: 'cover', height: '100%', width: '100%' }}
+                    />
+                  </div>
+                  <div className="col-md-8 d-flex align-items-center">
+                    <div className="card-body">
+                      <h5 className="card-title text-center">{artist.nombre}</h5>
+                      <p className="card-text text-center">{artist.biografia}</p>
+                      <p className="card-text text-center">
+                        <small className="text-muted">Nacionalidad: {artist.nacionalidad}</small>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-          <button className="carousel-control-prev" type="button" data-bs-target="#artistCarousel" data-bs-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button className="carousel-control-next" type="button" data-bs-target="#artistCarousel" data-bs-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Next</span>
-          </button>
+            </div>
+          ))}
         </div>
+      </div>
       </section>
     </div>
   );
