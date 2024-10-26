@@ -1,37 +1,38 @@
-import React, { createContext, useState, useEffect } from 'react';
-import axios from 'axios';
-
+import { createContext, useState, useEffect } from 'react';
+import axios from '../axiosConfig';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Verificar si el usuario tiene un token en localStorage
     const token = localStorage.getItem('token');
     if (token) {
-      setIsAuthenticated(true);  // Si hay un token, considera al usuario autenticado
+      axios.get('/auth/verify-token', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(response => {
+        setUser(response.data.user);
+      })
+      .catch(() => {
+        localStorage.removeItem('token');
+      });
     }
   }, []);
 
-  const login = (email, password) => {
-    // Llamada al backend para hacer login
-    return axios.post('/api/login', { email, password })
-      .then(response => {
-        localStorage.setItem('token', response.data.token);
-        setIsAuthenticated(true);  // Autenticar al usuario
-      });
+  const login = (userData) => {
+    setUser(userData);
+    localStorage.setItem('token', userData.token);
   };
 
   const logout = () => {
-    // Eliminar el token y cambiar el estado de autenticación
+    setUser(null);
     localStorage.removeItem('token');
-    setIsAuthenticated(false);
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

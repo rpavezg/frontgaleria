@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://backendgaleria.onrender.com',
+  baseURL: 'https://backendgaleria.onrender.com/api', // Ruta del backend
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Interceptor para agregar el token a todas las solicitudes
+// Interceptor para agregar el token en cada solicitud
 instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');

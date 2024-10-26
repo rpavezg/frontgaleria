@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from '../../axiosConfig';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -13,26 +15,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Realizar la solicitud de inicio de sesión al backend
       const response = await axios.post('/auth/login', formData);
-      const { token, user } = response.data;
-
-      // Guardar el token en localStorage
-      localStorage.setItem('token', token);
-
-      // Redirigir al usuario según su nivel
-      if (user.level === 1) {
-        console.log("Redirigiendo a /admin");
-        navigate('/admin');
-      } else if (user.level === 2) {
-        console.log("Redirigiendo a /profile");
-        navigate('/profile');
-      } else {
-        console.log("Redirigiendo a /");
-        navigate('/'); // Redirigir al home si no hay nivel específico
-      }
+      login(response.data);
+      response.data.user.level === 1 ? navigate('/admin') : navigate('/profile');
     } catch (error) {
-      console.error("Error al iniciar sesión:", error);
       alert('Credenciales incorrectas');
     }
   };
@@ -47,7 +33,7 @@ const Login = () => {
         </div>
         <div className="form-group">
           <label>Contraseña</label>
-          <input type="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required autoComplete="current-password" />
+          <input type="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required />
         </div>
         <button type="submit" className="btn btn-primary mt-2">Iniciar sesión</button>
       </form>

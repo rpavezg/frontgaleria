@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom'; // Usar HashRouter para evitar problemas de redirección
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './views/Home';
 import Artists from './views/Artists';
 import Register from './views/Register';
@@ -16,27 +16,25 @@ import Footer from './components/Footer';
 import PrivateRoute from './components/PrivateRoute';  
 import { AuthProvider } from './context/AuthContext';  
 import './index.css';
-import './App.css'; 
+import './App.css';
 
 function App() {
   return (
-    <AuthProvider>  {/* Proveedor del contexto de autenticación */}
+    <AuthProvider>
       <Router>
-        <Navbar />  {/* Navbar con enlaces a las diferentes secciones */}
-        <div style={{ minHeight: 'calc(100vh - 200px)' }}> {/* Asegura que el contenido ocupe el espacio necesario */}
+        <Navbar />
+        <div style={{ minHeight: 'calc(100vh - 200px)' }}>
           <Routes>
-            {/* Rutas del área pública */}
             <Route path="/" element={<Home />} />
             <Route path="/artists" element={<Artists />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/contact" element={<Contact />} />
 
-            {/* Rutas del área privada, protegidas según el nivel de usuario */}
             <Route
               path="/admin"
               element={
-                <PrivateRoute levelRequired={1}>  {/* Protege esta ruta solo para level 1 */}
+                <PrivateRoute levelRequired={1}>
                   <Admin />
                 </PrivateRoute>
               }
@@ -44,7 +42,7 @@ function App() {
             <Route
               path="/admin/create-artist"
               element={
-                <PrivateRoute levelRequired={1}>  {/* Protege esta ruta solo para level 1 */}
+                <PrivateRoute levelRequired={1}>
                   <CreateModifyArtist />
                 </PrivateRoute>
               }
@@ -52,7 +50,7 @@ function App() {
             <Route
               path="/admin/create-artwork"
               element={
-                <PrivateRoute levelRequired={1}>  {/* Protege esta ruta solo para level 1 */}
+                <PrivateRoute levelRequired={1}>
                   <CreateModifyArtwork />
                 </PrivateRoute>
               }
@@ -60,7 +58,7 @@ function App() {
             <Route
               path="/profile"
               element={
-                <PrivateRoute levelRequired={2}>  {/* Protege esta ruta solo para level 2 */}
+                <PrivateRoute levelRequired={2}>
                   <Profile />
                 </PrivateRoute>
               }
@@ -68,7 +66,7 @@ function App() {
             <Route
               path="/artworks"
               element={
-                <PrivateRoute levelRequired={2}>  {/* Protege esta ruta solo para level 2 */}
+                <PrivateRoute levelRequired={2}>
                   <Artworks />
                 </PrivateRoute>
               }
@@ -76,14 +74,14 @@ function App() {
             <Route
               path="/artworks/:id"
               element={
-                <PrivateRoute levelRequired={2}>  {/* Protege esta ruta solo para level 2 */}
+                <PrivateRoute levelRequired={2}>
                   <ArtworkDetail />
                 </PrivateRoute>
               }
             />
           </Routes>
         </div>
-        <Footer />  {/* Footer con enlaces y redes sociales */}
+        <Footer />
       </Router>
     </AuthProvider>
   );
