@@ -5,7 +5,7 @@ const Artists = () => {
   const [artists, setArtists] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/artists')
+    axios.get('/artists')
       .then(response => setArtists(response.data))
       .catch(error => console.error('Error al cargar los artistas:', error));
   }, []);
