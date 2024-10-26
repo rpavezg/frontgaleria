@@ -51,7 +51,7 @@ function Home() {
 
       {/* Carrusel de artistas destacados */}
       <section className="container my-5 d-block w-100">
-      <h2>Artistas Destacados</h2>
+      <h2 className='text-center' >Artistas Destacados</h2>
       <div className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-inner">
           {artists.slice(0, 3).map((artist, index) => (
