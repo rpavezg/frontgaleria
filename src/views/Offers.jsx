@@ -18,6 +18,19 @@ const Offers = () => {
     fetchOffers();
   }, []);
 
+  const handleDeleteOffer = async (id) => {
+    try {
+      await axios.delete(`/protected/offers/${id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      });
+      setOffers(offers.filter((offer) => offer.id !== id)); // Actualiza el estado local eliminando la oferta
+      alert('Oferta eliminada');
+    } catch (error) {
+      console.error("Error al eliminar la oferta:", error);
+      alert('Error al eliminar la oferta');
+    }
+  };
+
   return (
     <div className="container mt-4">
       <h2>Mis Ofertas</h2>

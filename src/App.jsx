@@ -11,6 +11,8 @@ import ArtworkDetail from './views/ArtworkDetail';
 import CreateModifyArtist from './views/CreateModifyArtist';
 import CreateModifyArtwork from './views/CreateModifyArtwork';
 import Contact from './views/Contact';
+import Likes from './views/Likes'; // Importa Likes
+import Offers from './views/Offers'; // Importa Offers
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import PrivateRoute from './components/PrivateRoute';  
@@ -76,6 +78,23 @@ function App() {
               element={
                 <PrivateRoute levelRequired={2}>
                   <ArtworkDetail />
+                </PrivateRoute>
+              }
+            />
+            {/* Agrega las rutas para Likes y Offers */}
+            <Route
+              path="/likes"
+              element={
+                <PrivateRoute levelRequired={2}>
+                  <Likes />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/offers"
+              element={
+                <PrivateRoute levelRequired={2}>
+                  <Offers />
                 </PrivateRoute>
               }
             />

@@ -18,6 +18,19 @@ const Likes = () => {
     fetchLikes();
   }, []);
 
+  const handleDeleteLike = async (id) => {
+    try {
+      await axios.delete(`/protected/likes/${id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      });
+      setLikes(likes.filter((like) => like.id !== id)); // Actualiza el estado local eliminando el "Me gusta"
+      alert('Me gusta eliminado');
+    } catch (error) {
+      console.error("Error al eliminar 'Me gusta':", error);
+      alert('Error al eliminar "Me gusta"');
+    }
+  };
+
   return (
     <div className="container mt-4">
       <h2>Mis Me Gusta</h2>
