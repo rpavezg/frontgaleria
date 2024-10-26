@@ -5,7 +5,7 @@ const Artworks = () => {
   const [artworks, setArtworks] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/protected/artworks')
+    axios.get('/protected/artworks')
       .then(response => {
         setArtworks(response.data);
       })
@@ -16,7 +16,7 @@ const Artworks = () => {
 
   const handleLike = async (id) => {
     try {
-      await axios.post(`/api/protected/artworks/${id}/like`);
+      await axios.post(`/protected/artworks/${id}/like`);
       alert("¡Obra marcada con 'Me gusta'!");
     } catch (error) {
       console.error("Error al registrar 'Me gusta':", error);
@@ -27,7 +27,7 @@ const Artworks = () => {
     const bidAmount = prompt("Ingresa el monto de tu oferta:");
     if (bidAmount) {
       try {
-        await axios.post(`/api/protected/artworks/${id}/bid`, { bid: bidAmount });
+        await axios.post(`/protected/artworks/${id}/bid`, { bid: bidAmount });
         alert("Oferta realizada con éxito");
       } catch (error) {
         console.error("Error al realizar la oferta:", error);
