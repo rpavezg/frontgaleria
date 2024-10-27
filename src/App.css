@@ -16,6 +16,6 @@ textarea.form-control {
 }
 
 .table-container {
-  max-width: 80vh;
+  max-width: 100%;
   margin: auto;
 }
