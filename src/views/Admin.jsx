@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axiosConfig';
-import '../../App.css';
+import '../App.css';
 
 const Admin = () => {
   const [artists, setArtists] = useState([]);

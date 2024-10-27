@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axiosConfig';
 import { useNavigate } from 'react-router-dom';
-import '../../App.css';s
+import '../App.css';
 
 const CreateModifyArtwork = () => {
   const [artworks, setArtworks] = useState([]);

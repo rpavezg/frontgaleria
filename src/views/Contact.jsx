@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../App.css';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="main-container">
       <h2>Formulario de Contacto</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">

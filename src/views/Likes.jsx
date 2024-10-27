@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../axiosConfig';
-import '../../App.css';
+import '../App.css';
 
 const Likes = () => {
   const [likes, setLikes] = useState([]);

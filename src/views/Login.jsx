@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from '../../axiosConfig';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import '../../App.css';
+import '../App.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
