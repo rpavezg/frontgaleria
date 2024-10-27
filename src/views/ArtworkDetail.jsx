@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from '../../axiosConfig'; 
-import '../App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ArtworkDetail = () => {
   const { id } = useParams();  // obtener id obra desde url

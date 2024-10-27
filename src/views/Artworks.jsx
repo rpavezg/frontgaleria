@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../axiosConfig';
-import '../App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Artworks = () => {
   const [artworks, setArtworks] = useState([]);
@@ -51,7 +51,7 @@ const currentArtworks = artworks.slice(indexOfFirstArtwork, indexOfLastArtwork);
 const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 return (
-  <div className="main-container">
+  <div>
       <h2 className="text-center">Obras de arte</h2>
       <div className="artworks-container">
         {currentArtworks.map(artwork => (
