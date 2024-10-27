@@ -46,10 +46,15 @@
   padding: 0;
 }
 .caja{
-  width: 100vh;
+  width: 800px;
   height: 100vb;
   display: flex;
   flex-direction: column;
   align-content: center;
-  padding: 10px;
+  margin-top: 50px;
+}
+.caja_footer{
+  padding: 0;
+  margin: 0;
+  width: 1274px;
 }
