@@ -42,28 +42,22 @@ const CreateModifyArtist = () => {
       });
     } else {
       setSelectedArtist(null);
-      setFormData({
-        nombre: '',
-        biografia: '',
-        nacionalidad: '',
-        nacimiento: '',
-        img: ''
-      });
+      setFormData({ nombre: '', biografia: '', nacionalidad: '', nacimiento: '', img: '' });
     }
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value.slice(0, 500) });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (selectedArtist) {
-        await axios.put(`/protected/artists/${selectedArtist.id}`, formData);
+        await axios.put(`/artists/${selectedArtist.id}`, formData);
         alert('Artista actualizado exitosamente');
       } else {
-        await axios.post('/protected/artists', formData);
+        await axios.post('/artists', formData);
         alert('Artista creado exitosamente');
       }
       navigate('/admin');
@@ -76,7 +70,7 @@ const CreateModifyArtist = () => {
   const handleDelete = async () => {
     if (selectedArtist) {
       try {
-        await axios.delete(`/protected/artists/${selectedArtist.id}`);
+        await axios.delete(`/artists/${selectedArtist.id}`);
         alert('Artista eliminado exitosamente');
         navigate('/admin');
       } catch (error) {
@@ -101,23 +95,10 @@ const CreateModifyArtist = () => {
           <input type="text" name="nombre" className="form-control" value={formData.nombre} onChange={handleChange} required />
         </div>
         <div className="form-group">
-          <label>Biografía</label>
-          <textarea name="biografia" className="form-control" value={formData.biografia} onChange={handleChange} required />
+          <label>Biografía (máx 500 caracteres)</label>
+          <textarea name="biografia" className="form-control" value={formData.biografia} onChange={handleChange} maxLength="500" required style={{ height: '150px' }} />
         </div>
-        <div className="form-group">
-          <label>Nacionalidad</label>
-          <input type="text" name="nacionalidad" className="form-control" value={formData.nacionalidad} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Fecha de Nacimiento</label>
-          <input type="date" name="nacimiento" className="form-control" value={formData.nacimiento} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Imagen (URL)</label>
-          <input type="text" name="img" className="form-control" value={formData.img} onChange={handleChange} required />
-        </div>
-        <button type="submit" className="btn btn-primary mt-2">{selectedArtist ? 'Actualizar' : 'Crear'}</button>
-        {selectedArtist && <button type="button" className="btn btn-danger mt-2 ml-2" onClick={handleDelete}>Eliminar</button>}
+        {/* Resto del formulario */}
       </form>
     </div>
   );

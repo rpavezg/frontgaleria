@@ -20,8 +20,8 @@ const CreateModifyArtwork = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const artworksResponse = await axios.get('/artworks');
-        const artistsResponse = await axios.get('/artists');
+        const artworksResponse = await axios.get('/protected/artworks');
+        const artistsResponse = await axios.get('/protected/artists');
         setArtworks(artworksResponse.data);
         setArtists(artistsResponse.data);
       } catch (error) {
@@ -59,7 +59,11 @@ const CreateModifyArtwork = () => {
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: name === 'descripcion' ? value.slice(0, 500) : value
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -116,8 +120,16 @@ const CreateModifyArtwork = () => {
           <input type="text" name="nombre" className="form-control" value={formData.nombre} onChange={handleChange} required />
         </div>
         <div className="form-group">
-          <label>Descripción</label>
-          <textarea name="descripcion" className="form-control" value={formData.descripcion} onChange={handleChange} required />
+          <label>Descripción (máx 500 caracteres)</label>
+          <textarea
+            name="descripcion"
+            className="form-control"
+            value={formData.descripcion}
+            onChange={handleChange}
+            maxLength="500"
+            required
+            style={{ height: '150px' }}
+          />
         </div>
         <div className="form-group">
           <label>Precio</label>
@@ -135,7 +147,9 @@ const CreateModifyArtwork = () => {
           <input type="text" name="img" className="form-control" value={formData.img} onChange={handleChange} required />
         </div>
         <button type="submit" className="btn btn-primary mt-2">{selectedArtwork ? 'Actualizar' : 'Crear'}</button>
-        {selectedArtwork && <button type="button" className="btn btn-danger mt-2 ml-2" onClick={handleDelete}>Eliminar</button>}
+        {selectedArtwork && (
+          <button type="button" className="btn btn-danger mt-2 ml-2" onClick={handleDelete}>Eliminar</button>
+        )}
       </form>
     </div>
   );
