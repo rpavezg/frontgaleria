@@ -19,13 +19,14 @@ import PrivateRoute from './components/PrivateRoute';
 import { AuthProvider } from './context/AuthContext';  
 import './index.css';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <AuthProvider>
       <Router>
         <Navbar />
-        
+        <div className='container'>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/artists" element={<Artists />} />
@@ -99,8 +100,9 @@ function App() {
               }
             />
           </Routes>
-
-        <Footer />
+          </div>
+          <div className='container-fluid'>
+        <Footer /></div>
       </Router>
     </AuthProvider>
   );
