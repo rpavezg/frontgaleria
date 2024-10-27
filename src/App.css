@@ -45,3 +45,10 @@
   max-width: 600px;
   padding: 0;
 }
+.caja{
+  width: 100vh;
+  height: 100vb;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
