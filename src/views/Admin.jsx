@@ -40,15 +40,53 @@ const Admin = () => {
     setArtworkForm({ ...artworkForm, [e.target.name]: e.target.value.slice(0, 500) });
   };
 
-  // Resto del código de Admin.jsx permanece igual
-  // Insertar tus demás métodos de CRUD aquí
+  const handleArtistSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (selectedArtist) {
+        // Actualizar artista existente
+        await axios.put(`/protected/artists/${selectedArtist.id}`, artistForm);
+        alert('Artista actualizado exitosamente');
+      } else {
+        // Crear nuevo artista
+        await axios.post('/protected/artists', artistForm);
+        alert('Artista creado exitosamente');
+      }
+      setArtistForm({ nombre: '', biografia: '', nacionalidad: '', nacimiento: '', img: '' });
+      setSelectedArtist(null);
+      fetchArtists();
+    } catch (error) {
+      console.error('Error al guardar el artista:', error);
+    }
+  };
+  
+  const handleArtworkSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (selectedArtwork) {
+        // Actualizar obra existente
+        await axios.put(`/protected/artworks/${selectedArtwork.id}`, artworkForm);
+        alert('Obra actualizada exitosamente');
+      } else {
+        // Crear nueva obra
+        await axios.post('/protected/artworks', artworkForm);
+        alert('Obra creada exitosamente');
+      }
+      setArtworkForm({ nombre: '', descripcion: '', precio: '', estado: '', img: '', id_artista: '' });
+      setSelectedArtwork(null);
+      fetchArtworks();
+    } catch (error) {
+      console.error('Error al guardar la obra:', error);
+    }
+  };
+  
 
   return (
     <div className="container mt-4">
       {/* Resto del código UI permanece igual */}
       <form onSubmit={handleArtistSubmit}>
         <input type="text" name="nombre" placeholder="Nombre" value={artistForm.nombre} onChange={handleArtistChange} className="form-control mb-2" required />
-        <textarea name="biografia" placeholder="Biografía (máx 500 caracteres)" value={artistForm.biografia} onChange={handleArtistChange} className="form-control mb-2" maxLength="500" required style={{ height: '150px' }} />
+        <input type="text" name="biografia" placeholder="Biografía" value={artistForm.biografia} onChange={handleArtistChange} className="form-control mb-2" required />
         <input type="text" name="nacionalidad" placeholder="Nacionalidad" value={artistForm.nacionalidad} onChange={handleArtistChange} className="form-control mb-2" required />
         <input type="date" name="nacimiento" placeholder="Fecha de Nacimiento" value={artistForm.nacimiento} onChange={handleArtistChange} className="form-control mb-2" required />
         <input type="text" name="img" placeholder="URL de Imagen" value={artistForm.img} onChange={handleArtistChange} className="form-control mb-2" required />
@@ -56,24 +94,24 @@ const Admin = () => {
         <button type="button" className="btn btn-danger" onClick={handleArtistDelete}>Eliminar Artista</button>
       </form>
       <form onSubmit={handleArtworkSubmit}>
-        <input type="text" name="nombre" placeholder="Nombre" value={artworkForm.nombre} onChange={handleArtworkChange} className="form-control mb-2" required />
-        <textarea name="descripcion" placeholder="Descripción (máx 500 caracteres)" value={artworkForm.descripcion} onChange={handleArtworkChange} className="form-control mb-2" maxLength="500" required style={{ height: '150px' }} />
-        <input type="number" name="precio" placeholder="Precio" value={artworkForm.precio} onChange={handleArtworkChange} className="form-control mb-2" required />
-        <select name="estado" value={artworkForm.estado} onChange={handleArtworkChange} className="form-control mb-2" required>
-          <option value="">Estado</option>
-          <option value="1">Disponible</option>
-          <option value="0">No disponible</option>
-        </select>
-        <input type="text" name="img" placeholder="URL de Imagen" value={artworkForm.img} onChange={handleArtworkChange} className="form-control mb-2" required />
-        <select name="id_artista" value={artworkForm.id_artista} onChange={handleArtworkChange} className="form-control mb-2" required>
-          <option value="">Seleccione un artista</option>
-          {artists.map((artist) => (
-            <option key={artist.id} value={artist.id}>{artist.nombre}</option>
-          ))}
-        </select>
-        <button type="submit" className="btn btn-primary me-2">Guardar Obra</button>
-        <button type="button" className="btn btn-danger" onClick={handleArtworkDelete}>Eliminar Obra</button>
-      </form>
+      <input type="text" name="nombre" placeholder="Nombre" value={artworkForm.nombre} onChange={handleArtworkChange} className="form-control mb-2" required />
+      <input type="text" name="descripcion" placeholder="Descripción" value={artworkForm.descripcion} onChange={handleArtworkChange} className="form-control mb-2" required />
+      <input type="number" name="precio" placeholder="Precio" value={artworkForm.precio} onChange={handleArtworkChange} className="form-control mb-2" required />
+      <select name="estado" value={artworkForm.estado} onChange={handleArtworkChange} className="form-control mb-2" required>
+        <option value="">Estado</option>
+        <option value="1">Disponible</option>
+        <option value="0">No disponible</option>
+      </select>
+      <input type="text" name="img" placeholder="URL de Imagen" value={artworkForm.img} onChange={handleArtworkChange} className="form-control mb-2" required />
+      <select name="id_artista" value={artworkForm.id_artista} onChange={handleArtworkChange} className="form-control mb-2" required>
+        <option value="">Seleccione un artista</option>
+        {artists.map((artist) => (
+          <option key={artist.id} value={artist.id}>{artist.nombre}</option>
+        ))}
+      </select>
+      <button type="submit" className="btn btn-primary me-2">Guardar Obra</button>
+      <button type="button" className="btn btn-danger" onClick={handleArtworkDelete}>Eliminar Obra</button>
+    </form>
     </div>
   );
 };
