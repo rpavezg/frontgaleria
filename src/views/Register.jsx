@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from '../../axiosConfig';
 import { useNavigate } from 'react-router-dom';
-import '../App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -37,7 +37,7 @@ const Register = () => {
   };
 
   return (
-    <div className="main-container">
+    <div className="container-fluid">
       <h2>Registro</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../axiosConfig';
-import '../App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Offers = () => {
   const [offers, setOffers] = useState([]);
@@ -33,7 +33,7 @@ const Offers = () => {
   };
 
   return (
-    <div className="main-container">
+    <div className="container-fluid">
       <h2>Mis Ofertas</h2>
       <table className="table">
         <thead>

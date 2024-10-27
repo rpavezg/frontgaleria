@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="main-container">
+    <div className="container-fluid">
       <h2>Formulario de Contacto</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">

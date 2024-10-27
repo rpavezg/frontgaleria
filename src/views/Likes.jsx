@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../axiosConfig';
-import '../App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Likes = () => {
   const [likes, setLikes] = useState([]);
@@ -33,7 +33,7 @@ const Likes = () => {
   };
 
   return (
-    <div className="main-container">
+    <div className="container-fluid">
       <h2>Mis Me Gusta</h2>
       <table className="table table-bordered table-hover" >
         <thead>

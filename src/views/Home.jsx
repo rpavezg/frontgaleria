@@ -19,7 +19,7 @@ function Home() {
   }, []);
 
   return (
-    <div>
+    <div className='container-fluid'>
       <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel" style={{ margin: 0 }}>
         <div className="carousel-inner">
           <div className="carousel-item active">
