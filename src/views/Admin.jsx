@@ -111,7 +111,7 @@ const Admin = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-1">
       <h2>Panel de Administración</h2>
       
       <div className="mt-5">
