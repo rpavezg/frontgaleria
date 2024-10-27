@@ -102,7 +102,7 @@ function App() {
             />
           </Routes>
           </div>
-          <div className='container-fluid'>
+          <div className='caja_footer'>
         <Footer /></div>
       </Router>
     </AuthProvider>
