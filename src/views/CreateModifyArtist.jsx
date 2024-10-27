@@ -82,7 +82,7 @@ const CreateModifyArtist = () => {
   };
 
   return (
-    <div className="container-fluid">
+    <div className="container mt-4">
       <h2>{selectedArtist ? 'Modificar Artista' : 'Crear Artista'}</h2>
       <select className="form-select mb-3" onChange={handleSelectChange}>
         <option value="">Seleccionar Artista para Modificar</option>
