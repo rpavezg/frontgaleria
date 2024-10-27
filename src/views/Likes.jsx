@@ -34,7 +34,7 @@ const Likes = () => {
   return (
     <div className="container mt-4">
       <h2>Mis Me Gusta</h2>
-      <table className="table">
+      <table className="table" >
         <thead>
           <tr>
             <th>Imagen</th>
