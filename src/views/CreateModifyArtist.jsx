@@ -18,7 +18,7 @@ const CreateModifyArtist = () => {
   useEffect(() => {
     const fetchArtists = async () => {
       try {
-        const response = await axios.get('/artists');
+        const response = await axios.get('/protected/artists');
         setArtists(response.data);
       } catch (error) {
         console.error('Error al cargar los artistas:', error);
@@ -54,10 +54,10 @@ const CreateModifyArtist = () => {
     e.preventDefault();
     try {
       if (selectedArtist) {
-        await axios.put(`/artists/${selectedArtist.id}`, formData);
+        await axios.put(`/protected/artists/${selectedArtist.id}`, formData);
         alert('Artista actualizado exitosamente');
       } else {
-        await axios.post('/artists', formData);
+        await axios.post('/protected/artists', formData);
         alert('Artista creado exitosamente');
       }
       navigate('/admin');
@@ -70,7 +70,7 @@ const CreateModifyArtist = () => {
   const handleDelete = async () => {
     if (selectedArtist) {
       try {
-        await axios.delete(`/artists/${selectedArtist.id}`);
+        await axios.delete(`/protected/artists/${selectedArtist.id}`);
         alert('Artista eliminado exitosamente');
         navigate('/admin');
       } catch (error) {
@@ -81,7 +81,7 @@ const CreateModifyArtist = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="form-container mt-4">
       <h2>{selectedArtist ? 'Modificar Artista' : 'Crear Artista'}</h2>
       <select className="form-select mb-3" onChange={handleSelectChange}>
         <option value="">Seleccionar Artista para Modificar</option>
@@ -98,7 +98,22 @@ const CreateModifyArtist = () => {
           <label>Biografía (máx 500 caracteres)</label>
           <textarea name="biografia" className="form-control" value={formData.biografia} onChange={handleChange} maxLength="500" required style={{ height: '150px' }} />
         </div>
-        {/* Resto del formulario */}
+        <div className="form-group">
+          <label>Nacionalidad</label>
+          <input type="text" name="nacionalidad" className="form-control" value={formData.nacionalidad} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
+          <label>Fecha de Nacimiento</label>
+          <input type="date" name="nacimiento" className="form-control" value={formData.nacimiento} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
+          <label>Imagen (URL)</label>
+          <input type="text" name="img" className="form-control" value={formData.img} onChange={handleChange} required />
+        </div>
+        <button type="submit" className="btn btn-primary mt-2">{selectedArtist ? 'Actualizar' : 'Crear'}</button>
+        {selectedArtist && (
+          <button type="button" className="btn btn-danger mt-2 ml-2" onClick={handleDelete}>Eliminar</button>
+        )}
       </form>
     </div>
   );
