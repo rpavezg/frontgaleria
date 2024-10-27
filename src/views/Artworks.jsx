@@ -50,12 +50,11 @@ const currentArtworks = artworks.slice(indexOfFirstArtwork, indexOfLastArtwork);
 const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 return (
-  <div className="container mt-4" style={{ width: '80%' }}>
-    <h2>Obras de arte</h2>
-    <div className="row">
-      {currentArtworks.map(artwork => (
-        <div className="col-md-4" key={artwork.id}>
-          <div className="card">
+  <div className="container mt-4">
+      <h2 className="text-center">Obras de arte</h2>
+      <div className="artworks-container">
+        {currentArtworks.map(artwork => (
+          <div className="card artwork-card" key={artwork.id}>
             <img src={artwork.img} className="card-img-top" alt={artwork.nombre} />
             <div className="card-body">
               <h5 className="card-title">{artwork.nombre}</h5>
@@ -65,9 +64,8 @@ return (
               <button className="btn btn-secondary" onClick={() => handleBid(artwork.id)}>Ofertar</button>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
 
     {/* Paginación */}
     <nav className="mt-4">
