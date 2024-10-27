@@ -37,6 +37,7 @@ const Register = () => {
   };
 
   return (
+    <div className='caja'>
     <div className="container-fluid">
       <h2>Registro</h2>
       <form onSubmit={handleSubmit}>
@@ -58,6 +59,7 @@ const Register = () => {
         </div>
         <button type="submit" className="btn btn-primary mt-2">Registrarse</button>
       </form>
+    </div>
     </div>
   );
 };

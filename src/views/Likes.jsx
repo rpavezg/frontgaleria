@@ -33,6 +33,8 @@ const Likes = () => {
   };
 
   return (
+    <div className='caja'>
+    
     <div className="container-fluid">
       <h2>Mis Me Gusta</h2>
       <table className="table table-bordered table-hover" >
@@ -56,6 +58,7 @@ const Likes = () => {
           ))}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };

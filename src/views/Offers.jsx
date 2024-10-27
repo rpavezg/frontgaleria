@@ -33,6 +33,7 @@ const Offers = () => {
   };
 
   return (
+    <div className='caja'>
     <div className="container-fluid">
       <h2>Mis Ofertas</h2>
       <table className="table">
@@ -55,6 +56,7 @@ const Offers = () => {
           ))}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };

@@ -11,7 +11,9 @@ const Artists = () => {
   }, []);
 
   return (
-    <div className="container mt-4">
+    <div className='caja'>
+
+    <div className="mt-4">
       <h2>Artistas</h2>
       <div>
         {artists.map((artist) => (
@@ -34,6 +36,7 @@ const Artists = () => {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };

@@ -37,6 +37,7 @@ const Profile = () => {
   }
 
   return (
+    <div className='caja'>
     <div className="container-fluid">
       <h2>Mi Perfil</h2>
       {profile ? (
@@ -48,6 +49,7 @@ const Profile = () => {
       ) : (
         <p>Error al cargar el perfil. Vuelve a intentarlo más tarde.</p>
       )}
+    </div>
     </div>
   );
 };

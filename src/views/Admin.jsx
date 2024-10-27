@@ -112,6 +112,8 @@ const Admin = () => {
   };
 
   return (
+    <div className='caja'>
+
     <div className='container-fluid'>
       <h2>Panel de Administración</h2>
       
@@ -162,6 +164,7 @@ const Admin = () => {
           <button type="button" className="btn btn-danger" onClick={handleArtworkDelete}>Eliminar Obra</button>
         </form>
       </div>
+    </div>
     </div>
   );
 };

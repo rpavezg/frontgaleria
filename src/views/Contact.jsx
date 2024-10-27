@@ -19,6 +19,8 @@ const Contact = () => {
   };
 
   return (
+    <div className='caja'>
+
     <div className="container-fluid">
       <h2>Formulario de Contacto</h2>
       <form onSubmit={handleSubmit}>
@@ -40,6 +42,7 @@ const Contact = () => {
         </div>
         <button type="submit" className="btn btn-primary mt-2">Enviar</button>
       </form>
+    </div>
     </div>
   );
 };
