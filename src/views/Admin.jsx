@@ -112,7 +112,7 @@ const Admin = () => {
   };
 
   return (
-    <div className="main-container">
+    <div>
       <h2>Panel de Administración</h2>
       
       <div className="mt-5">
