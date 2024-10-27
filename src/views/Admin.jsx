@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axiosConfig';
+import '../../App.css';
 
 const Admin = () => {
   const [artists, setArtists] = useState([]);
@@ -111,7 +112,7 @@ const Admin = () => {
   };
 
   return (
-    <div className="container mt-1">
+    <div className="main-container">
       <h2>Panel de Administración</h2>
       
       <div className="mt-5">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axiosConfig';
 import { useNavigate } from 'react-router-dom';
+import '../../App.css';
 
 const CreateModifyArtist = () => {
   const [artists, setArtists] = useState([]);
@@ -81,7 +82,7 @@ const CreateModifyArtist = () => {
   };
 
   return (
-    <div className="form-container mt-4">
+    <div className="main-container">
       <h2>{selectedArtist ? 'Modificar Artista' : 'Crear Artista'}</h2>
       <select className="form-select mb-3" onChange={handleSelectChange}>
         <option value="">Seleccionar Artista para Modificar</option>

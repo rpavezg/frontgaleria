@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../axiosConfig';
+import '../../App.css';
 
 const Likes = () => {
   const [likes, setLikes] = useState([]);
@@ -32,7 +33,7 @@ const Likes = () => {
   };
 
   return (
-    <div className="container">
+    <div className="main-container">
       <h2>Mis Me Gusta</h2>
       <table className="table table-bordered table-hover" >
         <thead>

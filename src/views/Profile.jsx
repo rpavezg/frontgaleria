@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import axios from '../../axiosConfig';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import '../../App.css';
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -36,7 +37,7 @@ const Profile = () => {
   }
 
   return (
-    <div className="container mt-4">
+    <div className="main-containers">
       <h2>Mi Perfil</h2>
       {profile ? (
         <>

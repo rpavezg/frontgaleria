@@ -1,7 +1,8 @@
 .container {
-  max-width: 80%;
+  max-width: 100vh;
   margin: 0 auto;
   padding: 2rem;
+  justify-content: center;
 }
 
 .form-control {
@@ -31,3 +32,37 @@ textarea.form-control {
 .form-container h2, .form-container form {
   text-align: center;
 }
+
+/* App.css */
+
+.main-container {
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.full-width-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.form-container {
+  max-width: 60%;
+  margin: 0 auto;
+}
+
+.form-container h2,
+.form-container form {
+  text-align: center;
+}
+
+.footer {
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 2rem 0;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+}
+

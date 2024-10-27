@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from '../../axiosConfig';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import '../../App.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -37,7 +38,7 @@ const Login = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="main-container">
       <h2>Iniciar sesión</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../axiosConfig';
+import '../../App.css';
 
 const Offers = () => {
   const [offers, setOffers] = useState([]);
@@ -32,7 +33,7 @@ const Offers = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="main-container">
       <h2>Mis Ofertas</h2>
       <table className="table">
         <thead>
