@@ -20,7 +20,6 @@ function Home() {
 
   return (
     <div>
-      {/* Carousel de imágenes principal */}
       <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel" style={{ margin: 0 }}>
         <div className="carousel-inner">
           <div className="carousel-item active">
