@@ -16,7 +16,7 @@ function Navbar() {
         <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
           <div className="navbar-nav align-content-end">
             {!user || user.level === 1 ? ( // Mostrar enlace "Artistas" solo para visitantes y usuarios nivel 1
-              <Link className="nav-link" to="/artists">Artistas</Link>
+              <Link className="nav-link" to="/admin">Inicio</Link>
             ) : (
               <Link className="nav-link" to="/artworks">Obras</Link> // Mostrar enlace "Obras" solo para nivel 2
             )}
