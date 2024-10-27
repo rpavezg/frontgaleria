@@ -25,7 +25,7 @@ function App() {
     <AuthProvider>
       <Router>
         <Navbar />
-        <div style={{ minHeight: 'calc(100vh - 200px)' }}>
+        
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/artists" element={<Artists />} />
@@ -99,7 +99,7 @@ function App() {
               }
             />
           </Routes>
-        </div>
+
         <Footer />
       </Router>
     </AuthProvider>
