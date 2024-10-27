@@ -19,6 +19,7 @@ function Home() {
   }, []);
 
   return (
+    <div className='container2'>
     <div className='container-fluid'>
       <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel" style={{ margin: 0 }}>
         <div className="carousel-inner">
@@ -81,6 +82,7 @@ function Home() {
         </div>
       </div>
       </section>
+    </div>
     </div>
   );
 }

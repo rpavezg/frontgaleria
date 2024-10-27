@@ -19,6 +19,12 @@ body {
   margin: 0;
 }
 
+.container2{
+  max-width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
 .carousel-inner img {
   width: 100%;
   height: auto;

@@ -27,7 +27,7 @@ function App() {
     <AuthProvider>
       <Router>
         <Navbar />
-        <div className='container'>
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/artists" element={<Artists />} />
@@ -101,7 +101,7 @@ function App() {
               }
             />
           </Routes>
-          </div>
+
           <div className='caja_footer'>
         <Footer /></div>
       </Router>
