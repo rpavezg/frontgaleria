@@ -32,9 +32,9 @@ const Likes = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container">
       <h2>Mis Me Gusta</h2>
-      <table className="table" >
+      <table className="table table-bordered table-hover" >
         <thead>
           <tr>
             <th>Imagen</th>
@@ -42,6 +42,7 @@ const Likes = () => {
             <th>Acciones</th>
           </tr>
         </thead>
+        <tbody class="table-group-divider"></tbody>
         <tbody>
           {likes.map((like) => (
             <tr key={like.id}>
