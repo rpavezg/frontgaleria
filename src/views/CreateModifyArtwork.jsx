@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axiosConfig';
 import { useNavigate } from 'react-router-dom';
-import '../App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CreateModifyArtwork = () => {
   const [artworks, setArtworks] = useState([]);
@@ -98,7 +98,7 @@ const CreateModifyArtwork = () => {
   };
 
   return (
-    <div className="main-container">
+    <div className="container">
       <h2>{selectedArtwork ? 'Modificar Obra' : 'Crear Obra'}</h2>
       <select className="form-select mb-3" onChange={handleSelectChange}>
         <option value="">Seleccionar Obra para Modificar</option>
