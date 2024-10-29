@@ -5,7 +5,7 @@ body {
   min-width: 320px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   background-color: white;
 }
 
@@ -16,7 +16,8 @@ body {
 
 .container {
   max-width: 80%;
-  margin: 20px auto; /* Espacio alrededor de los contenedores */
+  margin: 0 auto;
+  padding: 20px;
 }
 
 /* Navbar */
@@ -65,7 +66,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 60px); /* Ajusta la altura sin solapar con el navbar */
+  min-height: calc(70vh - 60px); /* Ajusta la altura sin solapar con el navbar */
   padding-top: 60px;
 }
 

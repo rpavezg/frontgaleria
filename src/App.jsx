@@ -11,12 +11,12 @@ import ArtworkDetail from './views/ArtworkDetail';
 import CreateModifyArtist from './views/CreateModifyArtist';
 import CreateModifyArtwork from './views/CreateModifyArtwork';
 import Contact from './views/Contact';
-import Likes from './views/Likes'; 
-import Offers from './views/Offers'; 
+import Likes from './views/Likes';
+import Offers from './views/Offers';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import PrivateRoute from './components/PrivateRoute';  
-import { AuthProvider } from './context/AuthContext';  
+import PrivateRoute from './components/PrivateRoute';
+import { AuthProvider } from './context/AuthContext';
 import './index.css';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -25,8 +25,9 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <Navbar />
-          <div className="form-wrapper">
+        <div className="page-container">
+          <Navbar />
+          <div className="content-wrap">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/artists" element={<Artists />} />
@@ -43,7 +44,8 @@ function App() {
               <Route path="/offers" element={<PrivateRoute levelRequired={2}><Offers /></PrivateRoute>} />
             </Routes>
           </div>
-        <Footer />
+          <Footer />
+        </div>
       </Router>
     </AuthProvider>
   );
