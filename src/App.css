@@ -20,31 +20,30 @@ body {
 }
 
 /* Navbar */
-.navbar {  
-  padding: 0.5rem 1rem;
+.navbar {
+  padding: 0.5rem 1rem; /* Ajuste de padding para reducir altura */
 }
 
-.navbar-brand {  
+.navbar-brand {
   font-size: 1.5rem;
 }
 
-.navbar-toggler {  
+.navbar-toggler {
   border: none;
 }
 
-.navbar-collapse {   
+.navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-nav .nav-link {   
-  padding: 0.5rem 1rem; 
+.navbar-nav .nav-link {
+  padding: 0.5rem 1rem;
 }
-
 
 /* Footer */
 footer {
   padding: 0.5rem 1rem;
-  background-color: black;
+  background-color: #343a40;
   color: #fff;
   text-align: center;
 }
@@ -52,7 +51,7 @@ footer {
 /* Formularios */
 .form-container {
   width: 100%;
-  max-width: 600px; 
+  max-width: 600px; /* Ancho máximo para los formularios */
   padding: 2rem;
   background-color: #f8f9fa;
   border-radius: 8px;
@@ -63,7 +62,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 60px); /* Ajusta la altura sin solapar con el navbar */
   padding-top: 60px;
 }
 
