@@ -24,7 +24,7 @@ const Likes = () => {
       await axios.delete(`/protected/likes/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
-      setLikes(likes.filter((like) => like.id !== id)); // Actualiza el estado local eliminando el "Me gusta"
+      setLikes(likes.filter((like) => like.id !== id));
       alert('Me gusta eliminado');
     } catch (error) {
       console.error("Error al eliminar 'Me gusta':", error);
@@ -33,11 +33,9 @@ const Likes = () => {
   };
 
   return (
-    <div className='caja'>
-    
-    <div className="container-fluid">
+    <div className="content-centered">
       <h2>Mis Me Gusta</h2>
-      <table className="table table-bordered table-hover" >
+      <table className="table table-bordered table-hover">
         <thead>
           <tr>
             <th>Imagen</th>
@@ -45,7 +43,6 @@ const Likes = () => {
             <th>Acciones</th>
           </tr>
         </thead>
-        <tbody class="table-group-divider"></tbody>
         <tbody>
           {likes.map((like) => (
             <tr key={like.id}>
@@ -58,7 +55,6 @@ const Likes = () => {
           ))}
         </tbody>
       </table>
-    </div>
     </div>
   );
 };

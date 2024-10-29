@@ -98,8 +98,7 @@ const CreateModifyArtwork = () => {
   };
 
   return (
-    <div className='caja'>
-    <div className="container-fluid">
+    <div className="form-centered">
       <h2>{selectedArtwork ? 'Modificar Obra' : 'Crear Obra'}</h2>
       <select className="form-select mb-3" onChange={handleSelectChange}>
         <option value="">Seleccionar Obra para Modificar</option>
@@ -153,7 +152,6 @@ const CreateModifyArtwork = () => {
           <button type="button" className="btn btn-danger mt-2 ml-2" onClick={handleDelete}>Eliminar</button>
         )}
       </form>
-    </div>
     </div>
   );
 };

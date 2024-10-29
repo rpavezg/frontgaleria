@@ -24,7 +24,7 @@ const Offers = () => {
       await axios.delete(`/protected/offers/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
-      setOffers(offers.filter((offer) => offer.id !== id)); // Actualiza el estado local eliminando la oferta
+      setOffers(offers.filter((offer) => offer.id !== id));
       alert('Oferta eliminada');
     } catch (error) {
       console.error("Error al eliminar la oferta:", error);
@@ -33,10 +33,9 @@ const Offers = () => {
   };
 
   return (
-    <div className='caja'>
-    <div className="container-fluid">
+    <div className="content-centered">
       <h2>Mis Ofertas</h2>
-      <table className="table">
+      <table className="table table-bordered table-hover">
         <thead>
           <tr>
             <th>Imagen</th>
@@ -56,7 +55,6 @@ const Offers = () => {
           ))}
         </tbody>
       </table>
-    </div>
     </div>
   );
 };

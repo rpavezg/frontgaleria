@@ -11,13 +11,11 @@ const Artists = () => {
   }, []);
 
   return (
-    <div className='caja'>
-
-    <div className="mt-4">
-      <h2>Artistas</h2>
-      <div>
+    <div className="content-centered">
+      <h2>Nuestros Artistas</h2>
+      <div className="card-container">
         {artists.map((artist) => (
-          <div className="card mb-3" key={artist.id}>
+          <div className="card" key={artist.id}>
             <div className="row g-0">
               <div className="col-md-4">
                 <img
@@ -36,7 +34,6 @@ const Artists = () => {
           </div>
         ))}
       </div>
-    </div>
     </div>
   );
 };

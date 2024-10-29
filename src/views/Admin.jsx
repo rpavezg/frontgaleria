@@ -112,12 +112,10 @@ const Admin = () => {
   };
 
   return (
-    <div className='caja'>
-
-    <div className='container-fluid'>
+    <div className="content-centered">
       <h2>Panel de Administración</h2>
       
-      <div className="mt-5">
+      <div className="form-container">
         <h4>Crear o Modificar Artista</h4>
         <select onChange={(e) => setSelectedArtist(JSON.parse(e.target.value))} className="form-control mb-3">
           <option value="">Seleccione un artista para editar</option>
@@ -136,7 +134,7 @@ const Admin = () => {
         </form>
       </div>
 
-      <div className="mt-5">
+      <div className="form-container">
         <h4>Crear o Modificar Obra</h4>
         <select onChange={(e) => setSelectedArtwork(JSON.parse(e.target.value))} className="form-control mb-3">
           <option value="">Seleccione una obra para editar</option>
@@ -164,7 +162,6 @@ const Admin = () => {
           <button type="button" className="btn btn-danger" onClick={handleArtworkDelete}>Eliminar Obra</button>
         </form>
       </div>
-    </div>
     </div>
   );
 };

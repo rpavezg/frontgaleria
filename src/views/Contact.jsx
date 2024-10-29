@@ -19,9 +19,7 @@ const Contact = () => {
   };
 
   return (
-    <div className='caja'>
-
-    <div className="container-fluid">
+    <div className="form-centered">
       <h2>Formulario de Contacto</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -42,7 +40,6 @@ const Contact = () => {
         </div>
         <button type="submit" className="btn btn-primary mt-2">Enviar</button>
       </form>
-    </div>
     </div>
   );
 };

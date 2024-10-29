@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
-  const [loading, setLoading] = useState(true); // Estado de carga
+  const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -24,7 +24,6 @@ const Profile = () => {
       }
     };
 
-    // Verifica si el usuario está autenticado antes de obtener el perfil
     if (user) {
       fetchProfile();
     } else {
@@ -37,8 +36,7 @@ const Profile = () => {
   }
 
   return (
-    <div className='caja'>
-    <div className="container-fluid">
+    <div className="content-centered">
       <h2>Mi Perfil</h2>
       {profile ? (
         <>
@@ -49,7 +47,6 @@ const Profile = () => {
       ) : (
         <p>Error al cargar el perfil. Vuelve a intentarlo más tarde.</p>
       )}
-    </div>
     </div>
   );
 };

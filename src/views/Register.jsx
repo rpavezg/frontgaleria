@@ -37,8 +37,7 @@ const Register = () => {
   };
 
   return (
-    <div className='caja'>
-    <div className="container-fluid">
+    <div className="form-centered">
       <h2>Registro</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -59,7 +58,6 @@ const Register = () => {
         </div>
         <button type="submit" className="btn btn-primary mt-2">Registrarse</button>
       </form>
-    </div>
     </div>
   );
 };

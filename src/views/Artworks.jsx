@@ -42,20 +42,17 @@ const Artworks = () => {
       alert("Error al registrar la oferta");
     }
   };
-// Calcular el rango de artworks para la página actual
-const indexOfLastArtwork = currentPage * artworksPerPage;
-const indexOfFirstArtwork = indexOfLastArtwork - artworksPerPage;
-const currentArtworks = artworks.slice(indexOfFirstArtwork, indexOfLastArtwork);
 
-// Cambiar de página
-const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const indexOfLastArtwork = currentPage * artworksPerPage;
+  const indexOfFirstArtwork = indexOfLastArtwork - artworksPerPage;
+  const currentArtworks = artworks.slice(indexOfFirstArtwork, indexOfLastArtwork);
 
-return (
-  <div className='caja'>
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  <div className='container-fluid'>
-      <h2 className="text-center">Obras de arte</h2>
-      <div className="artworks-container">
+  return (
+    <div className="content-centered">
+      <h2 className="text-center">Obras de Arte</h2>
+      <div className="card-container">
         {currentArtworks.map(artwork => (
           <div className="card artwork-card" key={artwork.id}>
             <img src={artwork.img} className="card-img-top" alt={artwork.nombre} />
@@ -70,21 +67,19 @@ return (
         ))}
       </div>
 
-    {/* Paginación */}
-    <nav className="mt-4">
-      <ul className="pagination justify-content-center">
-        {Array.from({ length: Math.ceil(artworks.length / artworksPerPage) }).map((_, index) => (
-          <li key={index + 1} className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}>
-            <button onClick={() => paginate(index + 1)} className="page-link">
-              {index + 1}
-            </button>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  </div>
-  </div>
-);
+      <nav className="pagination-nav mt-4">
+        <ul className="pagination">
+          {Array.from({ length: Math.ceil(artworks.length / artworksPerPage) }).map((_, index) => (
+            <li key={index + 1} className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}>
+              <button onClick={() => paginate(index + 1)} className="page-link">
+                {index + 1}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  );
 };
 
 export default Artworks;
