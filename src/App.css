@@ -1,130 +1,178 @@
-/* General */
-body {
+/* App.css */
+* {
   margin: 0;
   padding: 0;
-  min-width: 320px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: white;
+  box-sizing: border-box;
 }
 
-#root {
-  max-width: 100%;
-  margin: 0 auto;
+/* Estructura de la página */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Navbar y Footer */
+.navbar,
+footer {
+  width: 100%;
+  background-color: #222;
+  color: #fff;
+}
+
+footer {
+  padding: 20px;
+  text-align: center;
+}
+
+/* Estilos Generales */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
 }
 
 .container {
   max-width: 80%;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 20px;
 }
 
-/* Navbar */
-.navbar {
-  padding: 0.5rem 1rem; /* Ajuste de padding para reducir altura */
-}
-
-.navbar-brand {
-  font-size: 1.5rem;
-}
-
-.navbar-toggler {
-  border: none;
-}
-
-.navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-nav .nav-link {
-  padding: 0.5rem 1rem;
-}
-
-/* Footer */
-footer {
-  footer {
-    width: 100%;
-    padding: 20px;
-    background-color: black; /* Ajuste de color según el diseño */
-    color: #fff;
-    text-align: center;
-  }
-}
-
-/* Formularios */
-.form-container {
-  width: 100%;
-  max-width: 600px; /* Ancho máximo para los formularios */
-  padding: 2rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
+/* Estilos para Formularios */
 .form-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(70vh - 60px); /* Ajusta la altura sin solapar con el navbar */
-  padding-top: 60px;
-}
-
-button[type="submit"], button.btn-danger {
   width: 100%;
-  padding: 0.75rem;
-  margin-top: 1rem;
 }
 
-h2, h4 {
-  text-align: center;
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-  .container {
-    max-width: 95%;
-  }
-}
-
-/* Estilos para la página de Artistas */
-.artists-page .container {
-  max-width: 80%;
-  margin: 0 auto;
-  padding-top: 60px; /* Espacio desde el Navbar */
-}
-
-.artists-page h2 {
-  padding-bottom: 10px;
-}
-
-.card {
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.card-img-top {
-  height: 200px;
-  object-fit: cover;
-}
-
-.carousel-container {
+form {
+  max-width: 600px;
   width: 100%;
-  margin: 0;
-  padding: 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.carousel-container .carousel-item img {
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* Botones */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #007bff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Carruseles */
+.carousel img {
   width: 100%;
   height: auto;
   object-fit: cover;
 }
 
-.home-page .info-section {
-  max-width: 80%;
-  margin: 0 auto;
+/* Cards para la Vista de Artistas y Obras */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.artist-carousel {
-  max-width: 80%;
-  margin: 0 auto;
+.card {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+/* Paginación */
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.pagination .page-item .page-link {
+  color: #007bff;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pagination {
+    flex-direction: column;
+  }
+
+  .navbar-brand,
+  .nav-link {
+    font-size: 1rem;
+  }
 }
