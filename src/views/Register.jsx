@@ -37,7 +37,7 @@ const Register = () => {
   };
 
   return (
-    <div className="form-centered">
+    <div className="form-container">
       <h2>Registro</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
