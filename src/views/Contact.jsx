@@ -19,7 +19,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="form-centered">
+    <div className="form-container">
       <h2>Formulario de Contacto</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">

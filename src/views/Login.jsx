@@ -34,7 +34,7 @@ const Login = () => {
   };
 
   return (
-    <div className="form-centered">
+    <div className="form-container">
       <h2>Iniciar sesión</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
