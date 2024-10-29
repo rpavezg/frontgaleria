@@ -42,10 +42,13 @@ body {
 
 /* Footer */
 footer {
-  padding: 0.5rem 1rem;
-  background-color: #343a40;
-  color: #fff;
-  text-align: center;
+  footer {
+    width: 100%;
+    padding: 20px;
+    background-color: black; /* Ajuste de color según el diseño */
+    color: #fff;
+    text-align: center;
+  }
 }
 
 /* Formularios */
@@ -101,4 +104,26 @@ h2, h4 {
 .card-img-top {
   height: 200px;
   object-fit: cover;
+}
+
+.carousel-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-container .carousel-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.home-page .info-section {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.artist-carousel {
+  max-width: 80%;
+  margin: 0 auto;
 }
