@@ -21,6 +21,9 @@
 .navbar,
 footer {
   width: 100%;
+  z-index: 10;
+  position: fixed;
+  top: 0;
   background-color: #222;
   color: #fff;
   padding: 20px;
@@ -31,6 +34,7 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
   color: #333;
+  padding-top: 80px;
 }
 
 .container {

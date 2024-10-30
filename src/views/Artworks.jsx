@@ -51,7 +51,7 @@ const Artworks = () => {
 
   return (
     <div className="content-centered">
-      <h2 className="text-center">Obras de Arte</h2>
+      <h2 className="text-center">Nuestras Obras</h2>
       <div className="card-container">
         {currentArtworks.map(artwork => (
           <div className="card artwork-card" key={artwork.id}>
