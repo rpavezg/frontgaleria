@@ -50,7 +50,7 @@ const Artworks = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="content-centered">
+    <div className="container">
       <h2 className="text-center">Nuestras Obras</h2>
       <div className="card-container">
         {currentArtworks.map(artwork => (
