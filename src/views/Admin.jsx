@@ -61,12 +61,20 @@ const Admin = () => {
 
   const handleArtworkSubmit = async (e) => {
     e.preventDefault();
+    
+    const updatedArtworkForm = {
+      ...artworkForm,
+      id_artista: parseInt(artworkForm.id_artista, 10) || null,
+      precio: parseFloat(artworkForm.precio) || 0,
+      estado: parseInt(artworkForm.estado, 10) || 0,
+    };
+
     try {
       if (selectedArtwork) {
-        await axios.put(`/protected/artworks/${selectedArtwork.id}`, artworkForm);
+        await axios.put(`/protected/artworks/${selectedArtwork.id}`, updatedArtworkForm);
         alert('Obra actualizada exitosamente');
       } else {
-        await axios.post('/protected/artworks', artworkForm);
+        await axios.post('/protected/artworks', updatedArtworkForm);
         alert('Obra creada exitosamente');
       }
       setArtworkForm({ nombre: '', descripcion: '', precio: '', estado: '', img: '', id_artista: '' });

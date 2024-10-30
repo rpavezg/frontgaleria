@@ -36,14 +36,14 @@ const CreateModifyArtwork = () => {
   const handleSelectChange = (e) => {
     const artworkId = e.target.value;
     if (artworkId) {
-      const artwork = artworks.find(a => a.id === parseInt(artworkId));
+      const artwork = artworks.find(a => a.id === parseInt(artworkId, 10));
       setSelectedArtwork(artwork);
       setFormData({
-        id_artista: artwork.id_artista,
+        id_artista: artwork.id_artista.toString(),  // Convertir a cadena
         nombre: artwork.nombre,
         descripcion: artwork.descripcion,
-        precio: artwork.precio,
-        estado: artwork.estado,
+        precio: artwork.precio.toString(),
+        estado: artwork.estado.toString(),
         img: artwork.img
       });
     } else {
@@ -69,12 +69,21 @@ const CreateModifyArtwork = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validación previa para asegurarnos de que los valores son correctos
+    const updatedData = {
+      ...formData,
+      id_artista: parseInt(formData.id_artista, 10) || null,
+      precio: parseFloat(formData.precio) || 0,
+      estado: parseInt(formData.estado, 10) || 0,
+    };
+    
     try {
       if (selectedArtwork) {
-        await axios.put(`/protected/artworks/${selectedArtwork.id}`, formData);
+        await axios.put(`/protected/artworks/${selectedArtwork.id}`, updatedData);
         alert('Obra actualizada exitosamente');
       } else {
-        await axios.post('/protected/artworks', formData);
+        await axios.post('/protected/artworks', updatedData);
         alert('Obra creada exitosamente');
       }
       navigate('/admin');
@@ -139,6 +148,7 @@ const CreateModifyArtwork = () => {
         <div className="form-group">
           <label>Estado</label>
           <select name="estado" className="form-control" value={formData.estado} onChange={handleChange} required>
+            <option value="">Estado</option>
             <option value="1">Disponible</option>
             <option value="0">No Disponible</option>
           </select>
