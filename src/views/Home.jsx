@@ -34,12 +34,10 @@ function Home() {
             <div className="carousel-item">
               <img src="https://i.ibb.co/zm90xpM/3-artNV.jpg" className="d-block w-100" alt="3-artNV" />
             </div>
-            {/* Agrega más items según sea necesario */}
           </div>
         </div>
       </div>
 
-      {/* Sección de información */}
       <section className="info-section container my-5">
         <h2 className="text-center">Sobre la Galería</h2>
         <p className="text-center">
@@ -47,7 +45,6 @@ function Home() {
         </p>
       </section>
 
-      {/* Carrusel de artistas destacados */}
       <section className="container artist-carousel my-5">
         <h2 className="text-center">Artistas Destacados</h2>
         <div id="artistCarousel" className="carousel slide" data-bs-ride="carousel">

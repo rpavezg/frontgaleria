@@ -4,7 +4,7 @@ import axios from '../../axiosConfig';
 const Artists = () => {
   const [artists, setArtists] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const artistsPerPage = 6; // 6 artistas por página, 3 columnas x 2 filas
+  const artistsPerPage = 6;
 
   useEffect(() => {
     axios.get('/artists')
@@ -12,12 +12,12 @@ const Artists = () => {
       .catch(error => console.error('Error al cargar los artistas:', error));
   }, []);
 
-  // Obtener los artistas para la página actual
+
   const indexOfLastArtist = currentPage * artistsPerPage;
   const indexOfFirstArtist = indexOfLastArtist - artistsPerPage;
   const currentArtists = artists.slice(indexOfFirstArtist, indexOfLastArtist);
 
-  // Cambiar de página
+
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
@@ -39,7 +39,6 @@ const Artists = () => {
           ))}
         </div>
 
-        {/* Paginación */}
         <nav className="mt-4">
           <ul className="pagination justify-content-center">
             {Array.from({ length: Math.ceil(artists.length / artistsPerPage) }).map((_, index) => (

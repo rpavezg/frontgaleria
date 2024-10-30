@@ -1,11 +1,9 @@
-/* App.css */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Estructura de la página */
 .page-container {
   display: flex;
   flex-direction: column;
@@ -20,20 +18,15 @@
   justify-content: center;
 }
 
-/* Navbar y Footer */
 .navbar,
 footer {
   width: 100%;
   background-color: #222;
   color: #fff;
-}
-
-footer {
   padding: 20px;
   text-align: center;
 }
 
-/* Estilos Generales */
 body {
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
@@ -46,7 +39,6 @@ body {
   padding: 20px;
 }
 
-/* Estilos para Formularios */
 .form-wrapper {
   display: flex;
   justify-content: center;
@@ -82,7 +74,6 @@ form {
   border: 1px solid #ccc;
 }
 
-/* Botones */
 button {
   padding: 10px 20px;
   border: none;
@@ -105,14 +96,12 @@ button:hover {
   background-color: #c82333;
 }
 
-/* Carruseles */
 .carousel img {
   width: 100%;
   height: auto;
   object-fit: cover;
 }
 
-/* Cards para la Vista de Artistas y Obras */
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -137,7 +126,6 @@ button:hover {
   padding: 15px;
 }
 
-/* Paginación */
 .pagination {
   display: flex;
   justify-content: center;
@@ -156,7 +144,6 @@ button:hover {
   border-color: #007bff;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .container {
     max-width: 90%;

@@ -24,9 +24,9 @@ instance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
-      localStorage.removeItem('token'); // Elimina el token si es inválido
+      localStorage.removeItem('token');
       if (process.env.NODE_ENV === 'production') {
-        window.location.href = '/login'; // Redirige al login en producción
+        window.location.href = '/login';
       }
     }
     return Promise.reject(error);

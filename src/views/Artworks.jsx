@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Artworks = () => {
   const [artworks, setArtworks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const artworksPerPage = 6; // 2 filas de 3 cards cada una
+  const artworksPerPage = 6; 
 
   useEffect(() => {
     axios.get('/protected/artworks', {

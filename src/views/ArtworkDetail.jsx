@@ -4,12 +4,12 @@ import axios from '../../axiosConfig';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ArtworkDetail = () => {
-  const { id } = useParams();  // obtener id obra desde url
+  const { id } = useParams(); 
   const [artwork, setArtwork] = useState({});
   const [likes, setLikes] = useState(0);
 
   useEffect(() => {
-    // Detalle obras por id
+    
     axios.get(`/artworks/${id}`)
       .then(response => {
         setArtwork(response.data);
@@ -20,7 +20,7 @@ const ArtworkDetail = () => {
   }, [id]);
 
   const handleLike = () => {
-    // Me gusta
+    
     axios.post(`/artworks/${id}/like`)
       .then(response => {
         setLikes(likes + 1);
@@ -31,7 +31,7 @@ const ArtworkDetail = () => {
   };
 
   const handleBid = () => {
-    // Ofertar
+   
     const bidAmount = prompt("Ingresa el monto de tu oferta:");
     if (bidAmount) {
       axios.post(`/artworks/${id}/bid`, { bid: bidAmount })
