@@ -112,7 +112,7 @@ const Admin = () => {
   };
 
   return (
-    <div className="content-container">
+    <div className="form-container">
       <h2>Panel de Administración</h2>
       
       <div className="form-container">
